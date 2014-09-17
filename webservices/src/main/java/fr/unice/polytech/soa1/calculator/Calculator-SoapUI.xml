@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Calculator" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CalculatorServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo}CalculatorServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/CalculatorRPC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/CalculatorRPC?wsdl"><con:part><con:url>http://localhost:8080/webservices/CalculatorRPC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CalculatorService" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="IntegerMult" type="tns:IntegerMult"/>
+      <xs:element name="IntegerMultResponse" type="tns:IntegerMultResponse"/>
+      <xs:element name="IntegerSum" type="tns:IntegerSum"/>
+      <xs:element name="IntegerSumResponse" type="tns:IntegerSumResponse"/>
+      <xs:complexType name="IntegerMult">
+        <xs:sequence>
+          <xs:element name="left" type="xs:int"/>
+          <xs:element name="right" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IntegerMultResponse">
+        <xs:sequence>
+          <xs:element name="product" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IntegerSum">
+        <xs:sequence>
+          <xs:element name="left" type="xs:int"/>
+          <xs:element name="right" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IntegerSumResponse">
+        <xs:sequence>
+          <xs:element name="sum" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IntegerMult">
+    <wsdl:part element="tns:IntegerMult" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IntegerSumResponse">
+    <wsdl:part element="tns:IntegerSumResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IntegerSum">
+    <wsdl:part element="tns:IntegerSum" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IntegerMultResponse">
+    <wsdl:part element="tns:IntegerMultResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CalculatorRPC">
+    <wsdl:operation name="IntegerMult">
+      <wsdl:input message="tns:IntegerMult" name="IntegerMult"></wsdl:input>
+      <wsdl:output message="tns:IntegerMultResponse" name="IntegerMultResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IntegerSum">
+      <wsdl:input message="tns:IntegerSum" name="IntegerSum"></wsdl:input>
+      <wsdl:output message="tns:IntegerSumResponse" name="IntegerSumResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CalculatorServiceSoapBinding" type="tns:CalculatorRPC">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="IntegerMult">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="IntegerMult">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="IntegerMultResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IntegerSum">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="IntegerSum">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="IntegerSumResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CalculatorService">
+    <wsdl:port binding="tns:CalculatorServiceSoapBinding" name="CalculatorPort">
+      <soap:address location="http://localhost:8080/webservices/CalculatorRPC"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="IntegerMult" bindingOperationName="IntegerMult" type="Request-Response" outputName="IntegerMultResponse" inputName="IntegerMult" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <rpc:IntegerMult>
+         <left>?</left>
+         <right>?</right>
+      </rpc:IntegerMult>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerMult"/></con:call></con:operation><con:operation isOneWay="false" action="" name="IntegerSum" bindingOperationName="IntegerSum" type="Request-Response" outputName="IntegerSumResponse" inputName="IntegerSum" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <rpc:IntegerSum>
+         <left>?</left>
+         <right>?</right>
+      </rpc:IntegerSum>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerSum"/></con:call></con:operation></con:interface><con:testSuite name="CalculatorRPC TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="IntegerMult TestCase" searchProperties="true" id="8da2d503-b861-4f05-bbef-f0bfe04f585c"><con:settings/><con:testStep type="request" name="IntegerMult"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorServiceSoapBinding</con:interface><con:operation>IntegerMult</con:operation><con:request name="IntegerMult"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <rpc:IntegerMult>
+         <left>2</left>
+         <right>3</right>
+      </rpc:IntegerMult>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>//product</path><content>6</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerMult" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="IntegerSum TestCase" searchProperties="true" id="1a75d0c9-f899-4951-a2ac-21727110daeb"><con:settings/><con:testStep type="request" name="IntegerSum"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorServiceSoapBinding</con:interface><con:operation>IntegerSum</con:operation><con:request name="IntegerSum"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <rpc:IntegerSum>
+         <left>3</left>
+         <right>2</right>
+      </rpc:IntegerSum>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>//sum</path><content>5</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerSum" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
