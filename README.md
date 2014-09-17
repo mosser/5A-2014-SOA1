@@ -1,4 +1,4 @@
-# SOA1 Course Materiel
+# SOA1 Course Material
 
   * Author: [Sébastien Mosser](mosser@i3s.unice.fr)
   * Reviewer: [Mireille Blay-Fornarino](blay@i3s.unice.fr)

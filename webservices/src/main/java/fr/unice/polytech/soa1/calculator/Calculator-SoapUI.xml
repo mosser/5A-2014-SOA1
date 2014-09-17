@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="Calculator" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CalculatorRPCServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo}CalculatorRPCServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/CalculatorRPC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/CalculatorRPC?wsdl"><con:part><con:url>http://localhost:8080/webservices/CalculatorRPC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CalculatorRPCService" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+<con:soapui-project activeEnvironment="Default" name="Calculator" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Environment" value="Default"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="TestSuite" value="&lt;all>"/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Endpoint" value=""/>
+  <con:entry key="Select Report Type" value=""/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CalculatorRPCServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo}CalculatorRPCServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/CalculatorRPC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/CalculatorRPC?wsdl"><con:part><con:url>http://localhost:8080/webservices/CalculatorRPC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CalculatorRPCService" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
   <wsdl:types>
     <xs:schema elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="multiplyIntegers" type="tns:multiplyIntegers"/>
@@ -193,7 +223,44 @@
          </job>
       </doc:execute>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo/CalculatorDoc/execute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="CalculatorRPC TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="multiplyIntegers TestCase" searchProperties="true" id="6a34947c-8edb-4f71-bff5-ccd2f439bce6"><con:settings/><con:testStep type="request" name="multiplyIntegers"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorRPCServiceSoapBinding</con:interface><con:operation>multiplyIntegers</con:operation><con:request name="multiplyIntegers"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo/CalculatorDoc/execute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Calculator" type="rest" basePath="/" definitionUrl="http://localhost:8080/rest/calculator/?_wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/rest/calculator/?_wadl"><con:part><con:url>http://localhost:8080/rest/calculator/?_wadl</con:url><con:content><![CDATA[<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <grammars/>
+  <resources base="http://localhost:8080/">
+    <resource path="/rest/calculator">
+      <resource path="/adder/{left}/{right}">
+        <param name="left" style="template" type="xs:int"/>
+        <param name="right" style="template" type="xs:int"/>
+        <method name="GET">
+          <request/>
+          <response>
+            <representation mediaType="text/plain">
+              <param name="result" style="plain" type="xs:int"/>
+            </representation>
+          </response>
+        </method>
+      </resource>
+      <resource path="/multiplier">
+        <method name="POST">
+          <request>
+            <param name="left" style="query" type="xs:int"/>
+            <param name="right" style="query" type="xs:int"/>
+          </request>
+          <response>
+            <representation mediaType="text/plain">
+              <param name="result" style="plain" type="xs:int"/>
+            </representation>
+          </response>
+        </method>
+      </resource>
+    </resource>
+  </resources>
+</application>]]></con:content><con:type>http://wadl.dev.java.net/2009/02</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="/rest/calculator" path="/rest/calculator"><con:settings/><con:parameters/><con:resource name="/adder/{left}/{right}" path="/adder/{left}/{right}"><con:settings/><con:parameters><con:parameter><con:name>left</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:int</con:type><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>right</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:int</con:type><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>text/plain</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/calculator/adder/2/3</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="left" value="2"/>
+  <con:entry key="right" value="3"/>
+</con:parameters></con:request></con:method></con:resource><con:resource name="/multiplier" path="/multiplier"><con:settings/><con:parameters/><con:method name="POST" method="POST"><con:settings/><con:parameters><con:parameter><con:name>left</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:int</con:type><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>right</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:int</con:type><con:default xsi:nil="true"/></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>text/plain</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/calculator/multiplier</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="left" value="2"/>
+  <con:entry key="right" value="3"/>
+</con:parameters></con:request></con:method></con:resource></con:resource></con:interface><con:testSuite name="CalculatorRPC TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="multiplyIntegers TestCase" searchProperties="true" id="6a34947c-8edb-4f71-bff5-ccd2f439bce6"><con:settings/><con:testStep type="request" name="multiplyIntegers"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorRPCServiceSoapBinding</con:interface><con:operation>multiplyIntegers</con:operation><con:request name="multiplyIntegers"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
    <soapenv:Header/>
    <soapenv:Body>
       <rpc:multiplyIntegers>
@@ -269,4 +336,10 @@
    <soapenv:Body>
       <doc:execute/>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Schema Compliance"><con:configuration/></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Schema Compliance"><con:configuration/></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite name="CalculatorRest TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="adder" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="exploit multiplier"><con:settings/><con:config service="Calculator" methodName="POST" resourcePath="//rest/calculator/multiplier" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="exploit multiplier" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/calculator/multiplier</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>6</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="left" value="3"/>
+  <con:entry key="right" value="2"/>
+</con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="exploit adder"><con:settings/><con:config service="Calculator" methodName="GET" resourcePath="//rest/calculator/adder/{left}/{right}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="exploit adder" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/calculator/adder/2/3</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>5</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="left" value="2"/>
+  <con:entry key="right" value="3"/>
+</con:parameters></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

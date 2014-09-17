@@ -26,7 +26,25 @@ The project is a classical Maven project. As a consequence, one can easily impor
   * IntelliJ's users have to `import an existing project`, and the IDE will automatically detect maven settings. 
   * Eclipse's users will have to install the `eclipse-m2e` plugin, and fix the pom.xml to remove stupid lifecycle warning (as m2e does not cover the complete specifications)
   * Netbeans: no idea. feedback appreciated.
-  
+
+## Creating your own services
+
+<div style="float: right">
+<a href="url"><img src="http://infiltrated.net/mgz/monkey_see_do.gif" height="200" width="200" ></a>
+</div>
+
+We'll use a *monkey see, monkey do* approach for the setup of your environment. If you are interested by Maven and TomEE+ (or any other service container), you can of course investiguate how to setup a production environment by yourself. 
+
+For the others, you can follow the follwing steps:
+
+1. create a new directory, *e.g.*, `my-ws`, with two sub-directories: `src/main/java` and `webapp/WEB-INF`
+2. copy the contents of the `./pom.xml` file into your directory
+3. copy the contents of the `./webapp/WEB-INF/web.xml` file into your `webapp/WEB-INF` directory
+4. edit your copy of the `pom.xml` file:
+    * `groupId`: add your login as a postfix of `fr.unice.polytech.soa1`
+    * `name`: the intention of your service implementation.
+5. implement your services inside a package located in the `src/main/java` directory. That's all folks. 
+ 
 # Available Examples 
 
   * [Calculator](id:calculator) 
@@ -43,11 +61,13 @@ The example is organized according to the following directory structure.
   * `doc`: an implementation of the calculator service using the *Document* paradigm, on top of SOAP. 
   * `rest`: an implementation of the calculator service using the *REST* paradigm, on top of plain HTTP requests.
   
+The functional tests, written with SoapUI, are available in the `Calculator-SoapUI.xml` file.
+  
 ### RPC Implementation
 
   * Java Interface: `rpc.CalculatorRPC.java`
   * Java Implementation: `rpc.CalculatorRPCImpl.jaca`
-  * Generated WSDL: [http://localhost:8080/webservices/CalculatorRPC?wsdl](http://localhost:8080/webservices/CalculatorRPC?wsdl)
+  * Generated WSDL: [http://localhost:8080/webservices/CalculatorRPC?wsdl]()
 
   
 The service exposes 2 operations: `sumInetegers` and `multiplyIntegers`. Each operation takes as input two integers `left` and `right`, and produces as a result of its invocation the `sum` or the `product`.
@@ -61,7 +81,7 @@ In SoapUI, the `CalculatorRPCServiceSoapBinding` entry describes samples request
       * Output Message: `doc.CalculatorOutput`
       * Fault Message: `doc.UnsuportedArgumentFault`
   * Java Implementation: `doc.CalculatorDocImpl`
-  * Generated WSDL: [http://localhost:8080//webservices/CalculatorDOC?WSDL](http://localhost:8080//webservices/CalculatorDOC?WSDL)
+  * Generated WSDL: [http://localhost:8080/webservices/CalculatorDOC?WSDL]()
 
 The service exposes one single entry point, with an operation called `execute`. This operation process its input message (a request to perform an *addition* or a *product*) to yield an output message, containing the processed data.
 
@@ -71,9 +91,16 @@ In SoapUI, the `CalculatorDOCServiceSoapBinding` gives 2 examples of SOAP messag
 
 
 ### REST Implementation
-    
-TBD
-    
+
+  * Java Implementation: `rest.CalculatorREST`
+  * Generated WADL: [http://localhost:8080/rest/calculator/?_wadl]()    
+  * Resources:
+      * `adder`: [http://localhost:8080/rest/calculator/adder]
+      * `multiplier`: [http://localhost:8080/rest/calculator/multiplier]
+
+This service illustrates the use of `GET` and `POST` methods on top of the HTTP protocol. The first resource defined is the `adder`, which relies on a `GET` method. Parameters are given as path parameters. The second resource is the `multiplier`, which expects parameters as part of the body of a `POST` request.    
+
+
 ## Payment
 
 TDB
