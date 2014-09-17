@@ -29,9 +29,9 @@ The project is a classical Maven project. As a consequence, one can easily impor
 
 ## Creating your own services
 
-<div style="float: right">
-<a href="url"><img src="http://infiltrated.net/mgz/monkey_see_do.gif" height="200" width="200" ></a>
-</div>
+<p align=center>
+<a href="url"><img src="http://infiltrated.net/mgz/monkey_see_do.gif" height="150" width="150" ></a>
+</p>
 
 We'll use a *monkey see, monkey do* approach for the setup of your environment. If you are interested by Maven and TomEE+ (or any other service container), you can of course investiguate how to setup a production environment by yourself. 
 
@@ -103,6 +103,27 @@ This service illustrates the use of `GET` and `POST` methods on top of the HTTP 
 
 ## Payment
 
-TDB
+The example is organized according to the following directory structure.
 
+  * `business`: the data model associated to the payment example
+  * `rpc`: an implementation of the calculator service using the *RPC* paradigm, on top of SOAP.
+  * `doc`: an implementation of the calculator service using the *Document* paradigm, on top of SOAP. 
+  * `rest`: an implementation of the calculator service using the *REST* paradigm, on top of plain HTTP requests.
+
+### Specifications: CréditGénéral
+
+The service is provided by a bank named *CréditGénéral* (a portmanteau made by coupling 2 French bank names). It targets two classes of users: *(i)* comercial agent working at CréditGénéral, and *(ii)* retailers exploiting the payment service offered by the bank
+
+  * **Commercial agent**: She handle a set of customers who pay for using the CréditGénéral as their business bank. She can edit the information about each retailers (*e.g.*, address, name), add new retailers in the system or delete retailers.
+  * **Retailer**: a retailer can exploit the service by requesting it to process a transaction, or listing the transaction that were already processed.
+
+The follwing implementations are iso-functionals, and provide the very same level of service, based on a shared set of business objects.
+
+  
+
+### RPC Implementation
+
+### Document Implmentation
+
+### REST Implementation
   
