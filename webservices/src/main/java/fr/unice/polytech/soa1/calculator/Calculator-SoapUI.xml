@@ -1,84 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="Calculator" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CalculatorServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo}CalculatorServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/CalculatorRPC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/CalculatorRPC?wsdl"><con:part><con:url>http://localhost:8080/webservices/CalculatorRPC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CalculatorService" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+<con:soapui-project activeEnvironment="Default" name="Calculator" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CalculatorRPCServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo}CalculatorRPCServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/CalculatorRPC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/CalculatorRPC?wsdl"><con:part><con:url>http://localhost:8080/webservices/CalculatorRPC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CalculatorRPCService" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
   <wsdl:types>
     <xs:schema elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:element name="IntegerMult" type="tns:IntegerMult"/>
-      <xs:element name="IntegerMultResponse" type="tns:IntegerMultResponse"/>
-      <xs:element name="IntegerSum" type="tns:IntegerSum"/>
-      <xs:element name="IntegerSumResponse" type="tns:IntegerSumResponse"/>
-      <xs:complexType name="IntegerMult">
+      <xs:element name="multiplyIntegers" type="tns:multiplyIntegers"/>
+      <xs:element name="multiplyIntegersResponse" type="tns:multiplyIntegersResponse"/>
+      <xs:element name="sumIntegers" type="tns:sumIntegers"/>
+      <xs:element name="sumIntegersResponse" type="tns:sumIntegersResponse"/>
+      <xs:complexType name="multiplyIntegers">
         <xs:sequence>
           <xs:element name="left" type="xs:int"/>
           <xs:element name="right" type="xs:int"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="IntegerMultResponse">
+      <xs:complexType name="multiplyIntegersResponse">
         <xs:sequence>
           <xs:element name="product" type="xs:int"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="IntegerSum">
+      <xs:complexType name="sumIntegers">
         <xs:sequence>
           <xs:element name="left" type="xs:int"/>
           <xs:element name="right" type="xs:int"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="IntegerSumResponse">
+      <xs:complexType name="sumIntegersResponse">
         <xs:sequence>
           <xs:element name="sum" type="xs:int"/>
         </xs:sequence>
       </xs:complexType>
     </xs:schema>
   </wsdl:types>
-  <wsdl:message name="IntegerMult">
-    <wsdl:part element="tns:IntegerMult" name="parameters"></wsdl:part>
+  <wsdl:message name="multiplyIntegers">
+    <wsdl:part element="tns:multiplyIntegers" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="IntegerSumResponse">
-    <wsdl:part element="tns:IntegerSumResponse" name="parameters"></wsdl:part>
+  <wsdl:message name="sumIntegers">
+    <wsdl:part element="tns:sumIntegers" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="IntegerSum">
-    <wsdl:part element="tns:IntegerSum" name="parameters"></wsdl:part>
+  <wsdl:message name="sumIntegersResponse">
+    <wsdl:part element="tns:sumIntegersResponse" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:message name="IntegerMultResponse">
-    <wsdl:part element="tns:IntegerMultResponse" name="parameters"></wsdl:part>
+  <wsdl:message name="multiplyIntegersResponse">
+    <wsdl:part element="tns:multiplyIntegersResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:portType name="CalculatorRPC">
-    <wsdl:operation name="IntegerMult">
-      <wsdl:input message="tns:IntegerMult" name="IntegerMult"></wsdl:input>
-      <wsdl:output message="tns:IntegerMultResponse" name="IntegerMultResponse"></wsdl:output>
+    <wsdl:operation name="multiplyIntegers">
+      <wsdl:input message="tns:multiplyIntegers" name="multiplyIntegers"></wsdl:input>
+      <wsdl:output message="tns:multiplyIntegersResponse" name="multiplyIntegersResponse"></wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="IntegerSum">
-      <wsdl:input message="tns:IntegerSum" name="IntegerSum"></wsdl:input>
-      <wsdl:output message="tns:IntegerSumResponse" name="IntegerSumResponse"></wsdl:output>
+    <wsdl:operation name="sumIntegers">
+      <wsdl:input message="tns:sumIntegers" name="sumIntegers"></wsdl:input>
+      <wsdl:output message="tns:sumIntegersResponse" name="sumIntegersResponse"></wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="CalculatorServiceSoapBinding" type="tns:CalculatorRPC">
+  <wsdl:binding name="CalculatorRPCServiceSoapBinding" type="tns:CalculatorRPC">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="IntegerMult">
+    <wsdl:operation name="multiplyIntegers">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="IntegerMult">
+      <wsdl:input name="multiplyIntegers">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="IntegerMultResponse">
+      <wsdl:output name="multiplyIntegersResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="IntegerSum">
+    <wsdl:operation name="sumIntegers">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="IntegerSum">
+      <wsdl:input name="sumIntegers">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="IntegerSumResponse">
+      <wsdl:output name="sumIntegersResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="CalculatorService">
-    <wsdl:port binding="tns:CalculatorServiceSoapBinding" name="CalculatorPort">
+  <wsdl:service name="CalculatorRPCService">
+    <wsdl:port binding="tns:CalculatorRPCServiceSoapBinding" name="CalculatorPort">
       <soap:address location="http://localhost:8080/webservices/CalculatorRPC"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="IntegerMult" bindingOperationName="IntegerMult" type="Request-Response" outputName="IntegerMultResponse" inputName="IntegerMult" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="multiplyIntegers" bindingOperationName="multiplyIntegers" type="Request-Response" outputName="multiplyIntegersResponse" inputName="multiplyIntegers" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
    <soapenv:Header/>
    <soapenv:Body>
       <rpc:IntegerMult>
@@ -86,7 +86,7 @@
          <right>?</right>
       </rpc:IntegerMult>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerMult"/></con:call></con:operation><con:operation isOneWay="false" action="" name="IntegerSum" bindingOperationName="IntegerSum" type="Request-Response" outputName="IntegerSumResponse" inputName="IntegerSum" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerMult"/></con:call></con:operation><con:operation isOneWay="false" action="" name="sumIntegers" bindingOperationName="sumIntegers" type="Request-Response" outputName="sumIntegersResponse" inputName="sumIntegers" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
    <soapenv:Header/>
    <soapenv:Body>
       <rpc:IntegerSum>
@@ -94,20 +94,179 @@
          <right>?</right>
       </rpc:IntegerSum>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerSum"/></con:call></con:operation></con:interface><con:testSuite name="CalculatorRPC TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="IntegerMult TestCase" searchProperties="true" id="8da2d503-b861-4f05-bbef-f0bfe04f585c"><con:settings/><con:testStep type="request" name="IntegerMult"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorServiceSoapBinding</con:interface><con:operation>IntegerMult</con:operation><con:request name="IntegerMult"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerSum"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CalculatorDocServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/calculator/doc-demo}CalculatorDocServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080//webservices/CalculatorDOC?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080//webservices/CalculatorDOC?WSDL"><con:part><con:url>http://localhost:8080//webservices/CalculatorDOC?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="CalculatorDocService" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="execute" type="tns:execute"/>
+      <xs:element name="executeResponse" type="tns:executeResponse"/>
+      <xs:complexType name="execute">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="job" type="tns:calculatorInput"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="calculatorInput">
+        <xs:sequence>
+          <xs:element name="left" type="xs:int"/>
+          <xs:element default="SUM" minOccurs="0" name="operation" nillable="true" type="tns:operation"/>
+          <xs:element name="right" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="executeResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="processed" type="tns:calculatorOutput"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="calculatorOutput">
+        <xs:sequence>
+          <xs:element name="data" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="operation">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="MULT"/>
+          <xs:enumeration value="SUM"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="UnknownOperation" type="tns:UnknownOperation"/>
+      <xs:complexType name="UnknownOperation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="UnsupportedArgumentFault">
+    <wsdl:part element="tns:UnknownOperation" name="UnsupportedArgumentFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeResponse">
+    <wsdl:part element="tns:executeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="execute">
+    <wsdl:part element="tns:execute" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CalculatorDoc">
+    <wsdl:operation name="execute">
+      <wsdl:input message="tns:execute" name="execute"></wsdl:input>
+      <wsdl:output message="tns:executeResponse" name="executeResponse"></wsdl:output>
+      <wsdl:fault message="tns:UnsupportedArgumentFault" name="UnsupportedArgumentFault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CalculatorDocServiceSoapBinding" type="tns:CalculatorDoc">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="execute">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="execute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="executeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnsupportedArgumentFault">
+        <soap:fault name="UnsupportedArgumentFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CalculatorDocService">
+    <wsdl:port binding="tns:CalculatorDocServiceSoapBinding" name="CalculatorPort">
+      <soap:address location="http://localhost:8080/webservices/CalculatorDOC"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/CalculatorDOC</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="execute" bindingOperationName="execute" type="Request-Response" outputName="executeResponse" inputName="execute" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="sum"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorDOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo">
    <soapenv:Header/>
    <soapenv:Body>
-      <rpc:IntegerMult>
-         <left>2</left>
-         <right>3</right>
-      </rpc:IntegerMult>
+      <doc:execute>
+         <job>
+            <left>2</left>
+            <operation>SUM</operation>
+            <right>3</right>
+         </job>
+      </doc:execute>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>//product</path><content>6</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerMult" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="IntegerSum TestCase" searchProperties="true" id="1a75d0c9-f899-4951-a2ac-21727110daeb"><con:settings/><con:testStep type="request" name="IntegerSum"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorServiceSoapBinding</con:interface><con:operation>IntegerSum</con:operation><con:request name="IntegerSum"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo/CalculatorDoc/execute"/><con:wsrmConfig version="1.2"/></con:call><con:call name="product"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorDOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo">
    <soapenv:Header/>
    <soapenv:Body>
-      <rpc:IntegerSum>
+      <doc:execute>
+         <job>
+            <left>2</left>
+            <operation>MULT</operation>
+            <right>3</right>
+         </job>
+      </doc:execute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo/CalculatorDoc/execute"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="CalculatorRPC TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="multiplyIntegers TestCase" searchProperties="true" id="6a34947c-8edb-4f71-bff5-ccd2f439bce6"><con:settings/><con:testStep type="request" name="multiplyIntegers"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorRPCServiceSoapBinding</con:interface><con:operation>multiplyIntegers</con:operation><con:request name="multiplyIntegers"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <rpc:multiplyIntegers>
          <left>3</left>
          <right>2</right>
-      </rpc:IntegerSum>
+      </rpc:multiplyIntegers>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>//sum</path><content>5</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/IntegerSum" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>//product</path><content>6</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/multiplyIntegers" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="sumIntegers TestCase" searchProperties="true" id="42ac88c5-0aae-489c-bfe2-607768e5b486"><con:settings/><con:testStep type="request" name="sumIntegers"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorRPCServiceSoapBinding</con:interface><con:operation>sumIntegers</con:operation><con:request name="sumIntegers"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorRPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rpc="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <rpc:sumIntegers>
+         <left>3</left>
+         <right>2</right>
+      </rpc:sumIntegers>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>//sum</path><content>5</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo/CalculatorRPC/sumIntegers" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite name="CalculatorDoc TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="execute TestCase" searchProperties="true" id="af55a7f7-3a89-4f2c-a588-3ea0348a1996"><con:settings/><con:testStep type="request" name="doSum"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorDocServiceSoapBinding</con:interface><con:operation>execute</con:operation><con:request name="doSum"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorDOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <doc:execute>
+         <job>
+            <left>3</left>
+            <operation>SUM</operation>
+            <right>2</right>
+         </job>
+      </doc:execute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion"/><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>//data</path><content>5</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="doProduct"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorDocServiceSoapBinding</con:interface><con:operation>execute</con:operation><con:request name="doProduct"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorDOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <doc:execute>
+         <job>
+            <left>3</left>
+            <operation>MULT</operation>
+            <right>2</right>
+         </job>
+      </doc:execute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion"/><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>//data</path><content>6</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="IllegalRight"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorDocServiceSoapBinding</con:interface><con:operation>execute</con:operation><con:request name="IllegalRight"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorDOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <doc:execute>
+         <job>
+            <left>2</left>
+            <operation>SUM</operation>
+            <right>-2</right>
+         </job>
+      </doc:execute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="IllegalLeft"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorDocServiceSoapBinding</con:interface><con:operation>execute</con:operation><con:request name="IllegalLeft"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorDOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <doc:execute>
+         <job>
+            <left>-2</left>
+            <operation>SUM</operation>
+            <right>2</right>
+         </job>
+      </doc:execute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="IllegalOp"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorDocServiceSoapBinding</con:interface><con:operation>execute</con:operation><con:request name="IllegalOp"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorDOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <doc:execute>
+         <job>
+            <left>2</left>
+            <operation>DIV</operation>
+            <right>2</right>
+         </job>
+      </doc:execute>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="NullMessage"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CalculatorDocServiceSoapBinding</con:interface><con:operation>execute</con:operation><con:request name="NullMessage"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/CalculatorDOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://informatique.polytech.unice.fr/soa1/calculator/doc-demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <doc:execute/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Schema Compliance"><con:configuration/></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

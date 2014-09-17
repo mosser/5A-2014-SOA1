@@ -1,9 +1,8 @@
 package fr.unice.polytech.soa1.calculator.doc;
 
-/**
- * This file is part of the SOA1-WS project
- *
- * @author mosser (17/09/2014, 14:32)
- */
+import javax.xml.bind.annotation.XmlEnum;
+
+@XmlEnum(String.class)
 public enum Operation {
+  	MULT, SUM
 }

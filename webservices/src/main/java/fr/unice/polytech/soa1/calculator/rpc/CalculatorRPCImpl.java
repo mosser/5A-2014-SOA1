@@ -8,9 +8,8 @@ import javax.jws.WebService;
 @Stateless(name = "CalculatorRPC")
 @WebService(targetNamespace = "http://informatique.polytech.unice.fr/soa1/calculator/rpc-demo",
 			portName = "CalculatorPort",
-			serviceName = "CalculatorService",
-			endpointInterface = "fr.unice.polytech.soa1.calculator.rpc.CalculatorRPC",
-			name = "Calculator-RPC")
+			serviceName = "CalculatorRPCService",
+			endpointInterface = "fr.unice.polytech.soa1.calculator.rpc.CalculatorRPC")
 public class CalculatorRPCImpl implements CalculatorRPC {
 
 	private Machine calculator = new Machine();

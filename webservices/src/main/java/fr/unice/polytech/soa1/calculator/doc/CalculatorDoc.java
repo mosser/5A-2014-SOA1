@@ -1,9 +1,15 @@
 package fr.unice.polytech.soa1.calculator.doc;
 
-/**
- * This file is part of the SOA1-WS project
- *
- * @author mosser (17/09/2014, 14:30)
- */
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+
+@WebService(targetNamespace = "http://informatique.polytech.unice.fr/soa1/calculator/doc-demo")
 public interface CalculatorDoc {
+
+	@WebMethod(operationName = "execute")
+	@WebResult(name = "processed")
+	public CalculatorOutput dispatch(@WebParam(name = "job") CalculatorInput input) throws UnsupportedArgumentFault;
+
 }
