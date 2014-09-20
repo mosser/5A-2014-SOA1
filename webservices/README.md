@@ -167,7 +167,6 @@ The following resources are exposed. One can notice that the relative paths for 
       * `GET`: returns the transactions associated to the customer identified by the given `id`
   * `/rest/payment/public/{id}/process`:
       * `POST`: the process used to perform a payment for customer `id`.
-      
   * `/rest/payment/private/retailers`:
       * `GET`: returns a list of links to registered retailers
       * `POST`: create a new retailer (status code: 201), available as a new resource
