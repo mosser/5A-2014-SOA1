@@ -104,8 +104,8 @@ In SoapUI, the `CalculatorDOCServiceSoapBinding` gives 2 examples of SOAP messag
   * Java Implementation: `rest.CalculatorRESTImpl.java`
   * Generated WADL: [http://localhost:8080/rest/calculator/?_wadl]()    
   * Resources:
-      * `adder`: [http://localhost:8080/rest/calculator/adder]
-      * `multiplier`: [http://localhost:8080/rest/calculator/multiplier]
+      * `adder`: [http://localhost:8080/rest/calculator/adder]()
+      * `multiplier`: [http://localhost:8080/rest/calculator/multiplier]()
 
 This service illustrates the use of `GET` and `POST` methods on top of the HTTP protocol. The first resource defined is the `adder`, which relies on a `GET` method. Parameters are given as path parameters. The second resource is the `multiplier`, which expects parameters as part of the body of a `POST` request.    
 

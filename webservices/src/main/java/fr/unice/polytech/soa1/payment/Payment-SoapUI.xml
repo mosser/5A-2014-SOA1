@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="Payment" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Payment" type="rest" basePath="/" definitionUrl="http://localhost:8080/rest/payment/public?_wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="/rest/payment/public" path="/rest/payment/public"><con:settings/><con:parameters/><con:resource name="/{id}/process" path="/{id}/process"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="POST" method="POST"><con:settings/><con:parameters><con:parameter><con:name>card</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>customer</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>amount</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:double</con:type><con:default xsi:nil="true"/></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/{id}/transactions" path="/{id}/transactions"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource></con:resource></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Payment" type="rest" basePath="/" definitionUrl="http://localhost:8080/rest/payment/private?_wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/rest/payment/private?_wadl"><con:part><con:url>http://localhost:8080/rest/payment/private?_wadl</con:url><con:content><![CDATA[<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<con:soapui-project activeEnvironment="Default" name="Payment" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Payment" type="rest" basePath="/" definitionUrl="http://localhost:8080/rest/payment/public?_wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/rest/payment/public?_wadl"><con:part><con:url>http://localhost:8080/rest/payment/public?_wadl</con:url><con:content><![CDATA[<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <grammars/>
+  <resources base="http://localhost:8080/">
+    <resource path="/rest/payment/public">
+      <resource path="/{id}/process">
+        <param name="id" style="template" type="xs:string"/>
+        <method name="POST">
+          <request>
+            <param name="card" style="query" type="xs:string"/>
+            <param name="customer" style="query" type="xs:string"/>
+            <param name="amount" style="query" type="xs:double"/>
+          </request>
+          <response>
+            <representation mediaType="application/xml"/>
+          </response>
+        </method>
+      </resource>
+      <resource path="/{id}/transactions">
+        <param name="id" style="template" type="xs:string"/>
+        <method name="GET">
+          <request/>
+          <response>
+            <representation mediaType="application/xml"/>
+          </response>
+        </method>
+      </resource>
+    </resource>
+  </resources>
+</application>]]></con:content><con:type>http://wadl.dev.java.net/2009/02</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="/rest/payment/public" path="/rest/payment/public"><con:settings/><con:parameters/><con:resource name="/{id}/process" path="/{id}/process"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="POST" method="POST"><con:settings/><con:parameters><con:parameter><con:name>card</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>customer</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>amount</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:double</con:type><con:default xsi:nil="true"/></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/{id}/transactions" path="/{id}/transactions"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource></con:resource></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Payment" type="rest" basePath="/" definitionUrl="http://localhost:8080/rest/payment/private?_wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/rest/payment/private?_wadl"><con:part><con:url>http://localhost:8080/rest/payment/private?_wadl</con:url><con:content><![CDATA[<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <grammars/>
   <resources base="http://localhost:8080/">
     <resource path="/rest/payment/private">
@@ -45,11 +73,424 @@
       </resource>
     </resource>
   </resources>
-</application>]]></con:content><con:type>http://wadl.dev.java.net/2009/02</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="/rest/payment/private" path="/rest/payment/private"><con:settings/><con:parameters/><con:resource name="/retailers" path="/retailers"><con:settings/><con:parameters/><con:method name="GET" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/private/retailers</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="POST" method="POST"><con:settings/><con:parameters><con:parameter><con:name>name</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>address</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/retailers/{id}" path="/retailers/{id}"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="DELETE" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method><con:method name="GET" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/private/retailers/s-001</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="s-001" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method><con:method name="PUT" method="PUT"><con:settings/><con:parameters><con:parameter><con:name>name</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>address</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource></con:resource></con:interface><con:testSuite name="Payment-Rest TestSuite"><con:description>TestSuite generated for REST Service [Payment]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Process Payment" searchProperties="true" id="b3bcc583-58ee-47d2-9238-d07e9ef2d93e"><con:description>Process a payment.</con:description><con:settings/><con:testStep type="restrequest" name="list transactions for s-002"><con:settings/><con:config service="Payment" methodName="GET" resourcePath="//rest/payment/public/{id}/transactions" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="list transactions for s-002" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/transactions</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="s-002" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="Count transactions"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>counter</con:name><con:sourceType>ResponseAsXml</con:sourceType><con:sourcePath>count(//item)</con:sourcePath><con:targetType>counter_init</con:targetType><con:targetStep>#TestCase#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="process credit card"><con:settings/><con:config service="Payment" methodName="POST" resourcePath="//rest/payment/public/{id}/process" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="process credit card" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/process</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>PROCESSING</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+</application>]]></con:content><con:type>http://wadl.dev.java.net/2009/02</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="/rest/payment/private" path="/rest/payment/private"><con:settings/><con:parameters/><con:resource name="/retailers" path="/retailers"><con:settings/><con:parameters/><con:method name="GET" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/private/retailers</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="POST" method="POST"><con:settings/><con:parameters><con:parameter><con:name>name</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>address</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource><con:resource name="/retailers/{id}" path="/retailers/{id}"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="DELETE" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method><con:method name="GET" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/private/retailers/s-001</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="s-001" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method><con:method name="PUT" method="PUT"><con:settings/><con:parameters><con:parameter><con:name>name</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter><con:parameter><con:name>address</con:name><con:value xsi:nil="true"/><con:style>QUERY</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/xml</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PaymentRPCPrivateServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/payment/rpc/private}PaymentRPCPrivateServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/Payment-Private-RPC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/Payment-Private-RPC?wsdl"><con:part><con:url>http://localhost:8080/webservices/Payment-Private-RPC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PaymentRPCPrivateService" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/rpc/private" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/payment/rpc/private" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://informatique.polytech.unice.fr/soa1/payment/rpc/public">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/rpc/private" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="describe_customer" type="tns:describe_customer"/>
+      <xs:element name="describe_customerResponse" type="tns:describe_customerResponse"/>
+      <xs:element name="get_all_customer_identifiers" type="tns:get_all_customer_identifiers"/>
+      <xs:element name="get_all_customer_identifiersResponse" type="tns:get_all_customer_identifiersResponse"/>
+      <xs:element name="register_new_retailer" type="tns:register_new_retailer"/>
+      <xs:element name="register_new_retailerResponse" type="tns:register_new_retailerResponse"/>
+      <xs:element name="remove_customer" type="tns:remove_customer"/>
+      <xs:element name="remove_customerResponse" type="tns:remove_customerResponse"/>
+      <xs:element name="retailer" type="tns:retailer"/>
+      <xs:element name="update_customer" type="tns:update_customer"/>
+      <xs:element name="update_customerResponse" type="tns:update_customerResponse"/>
+      <xs:complexType name="describe_customer">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="describe_customerResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:retailer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="retailer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="transactions">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="transaction" type="tns:transaction"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID"/>
+      </xs:complexType>
+      <xs:complexType name="transaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="transaction_amount" type="xs:double"/>
+          <xs:element minOccurs="0" name="card_number" type="xs:string"/>
+          <xs:element minOccurs="0" name="customer_info" type="xs:string"/>
+          <xs:element minOccurs="0" name="transaction_status" type="tns:status"/>
+        </xs:sequence>
+        <xs:attribute name="retailer" type="xs:IDREF"/>
+      </xs:complexType>
+      <xs:complexType name="update_customer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="address" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="update_customerResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="updated" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="get_all_customer_identifiers">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="get_all_customer_identifiersResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="identifiers" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="register_new_retailer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="address" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="register_new_retailerResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="identifier" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="remove_customer">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="remove_customerResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="removed" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="status">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PROCESSING"/>
+          <xs:enumeration value="APPROVED"/>
+          <xs:enumeration value="DECLINED"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="id" nillable="true" type="xs:string"/>
+    </xs:schema>
+    <xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/rpc/public" xmlns:tns="http://informatique.polytech.unice.fr/soa1/payment/rpc/public">
+      <xsd:element name="UnknownRetailer" type="tns:UnknownRetailer"/>
+      <xsd:complexType name="UnknownRetailer">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="describe_customer">
+    <wsdl:part element="tns:describe_customer" name="parameters"></wsdl:part>
+    <wsdl:part element="tns:id" name="id"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update_customer">
+    <wsdl:part element="tns:update_customer" name="parameters"></wsdl:part>
+    <wsdl:part element="tns:id" name="id"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="register_new_retailer">
+    <wsdl:part element="tns:register_new_retailer" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="remove_customer">
+    <wsdl:part element="tns:remove_customer" name="parameters"></wsdl:part>
+    <wsdl:part element="tns:id" name="id"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="remove_customerResponse">
+    <wsdl:part element="tns:remove_customerResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="describe_customerResponse">
+    <wsdl:part element="tns:describe_customerResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownRetailerFault">
+    <wsdl:part element="ns1:UnknownRetailer" name="UnknownRetailerFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="get_all_customer_identifiersResponse">
+    <wsdl:part element="tns:get_all_customer_identifiersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="register_new_retailerResponse">
+    <wsdl:part element="tns:register_new_retailerResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update_customerResponse">
+    <wsdl:part element="tns:update_customerResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="get_all_customer_identifiers">
+    <wsdl:part element="tns:get_all_customer_identifiers" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AdminRPC">
+    <wsdl:operation name="describe_customer">
+      <wsdl:input message="tns:describe_customer" name="describe_customer"></wsdl:input>
+      <wsdl:output message="tns:describe_customerResponse" name="describe_customerResponse"></wsdl:output>
+      <wsdl:fault message="tns:UnknownRetailerFault" name="UnknownRetailerFault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="update_customer">
+      <wsdl:input message="tns:update_customer" name="update_customer"></wsdl:input>
+      <wsdl:output message="tns:update_customerResponse" name="update_customerResponse"></wsdl:output>
+      <wsdl:fault message="tns:UnknownRetailerFault" name="UnknownRetailerFault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="get_all_customer_identifiers">
+      <wsdl:input message="tns:get_all_customer_identifiers" name="get_all_customer_identifiers"></wsdl:input>
+      <wsdl:output message="tns:get_all_customer_identifiersResponse" name="get_all_customer_identifiersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="register_new_retailer">
+      <wsdl:input message="tns:register_new_retailer" name="register_new_retailer"></wsdl:input>
+      <wsdl:output message="tns:register_new_retailerResponse" name="register_new_retailerResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="remove_customer">
+      <wsdl:input message="tns:remove_customer" name="remove_customer"></wsdl:input>
+      <wsdl:output message="tns:remove_customerResponse" name="remove_customerResponse"></wsdl:output>
+      <wsdl:fault message="tns:UnknownRetailerFault" name="UnknownRetailerFault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PaymentRPCPrivateServiceSoapBinding" type="tns:AdminRPC">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="describe_customer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="describe_customer">
+        <soap:header message="tns:describe_customer" part="id" use="literal"></soap:header>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="describe_customerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownRetailerFault">
+        <soap:fault name="UnknownRetailerFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="update_customer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="update_customer">
+        <soap:header message="tns:update_customer" part="id" use="literal"></soap:header>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="update_customerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownRetailerFault">
+        <soap:fault name="UnknownRetailerFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="get_all_customer_identifiers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="get_all_customer_identifiers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="get_all_customer_identifiersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="register_new_retailer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="register_new_retailer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="register_new_retailerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="remove_customer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="remove_customer">
+        <soap:header message="tns:remove_customer" part="id" use="literal"></soap:header>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="remove_customerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownRetailerFault">
+        <soap:fault name="UnknownRetailerFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaymentRPCPrivateService">
+    <wsdl:port binding="tns:PaymentRPCPrivateServiceSoapBinding" name="PaymentRPCPrivatePort">
+      <soap:address location="http://localhost:8080/webservices/Payment-Private-RPC"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/Payment-Private-RPC</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="describe_customer" bindingOperationName="describe_customer" type="Request-Response" outputName="describe_customerResponse" inputName="describe_customer" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Private-RPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:priv="http://informatique.polytech.unice.fr/soa1/payment/rpc/private">
+   <soapenv:Header>
+      <priv:id>49806613-0e81-4c86-9e2f-e9fd02adf669</priv:id>
+   </soapenv:Header>
+   <soapenv:Body>
+      <priv:describe_customer/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/rpc/private/AdminRPC/describe_customer"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="get_all_customer_identifiers" bindingOperationName="get_all_customer_identifiers" type="Request-Response" outputName="get_all_customer_identifiersResponse" inputName="get_all_customer_identifiers" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Private-RPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:priv="http://informatique.polytech.unice.fr/soa1/payment/rpc/private">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <priv:get_all_customer_identifiers/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/rpc/private/AdminRPC/get_all_customer_identifiers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="register_new_retailer" bindingOperationName="register_new_retailer" type="Request-Response" outputName="register_new_retailerResponse" inputName="register_new_retailer" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Private-RPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:priv="http://informatique.polytech.unice.fr/soa1/payment/rpc/private">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <priv:register_new_retailer>
+         <name>Foo, bar and Geek</name>
+         <address>middle_of_nowhere</address>
+      </priv:register_new_retailer>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/rpc/private/AdminRPC/register_new_retailer"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="remove_customer" bindingOperationName="remove_customer" type="Request-Response" outputName="remove_customerResponse" inputName="remove_customer" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Private-RPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:priv="http://informatique.polytech.unice.fr/soa1/payment/rpc/private">
+   <soapenv:Header>
+      <priv:id>49806613-0e81-4c86-9e2f-e9fd02adf669</priv:id>
+   </soapenv:Header>
+   <soapenv:Body>
+      <priv:remove_customer/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/rpc/private/AdminRPC/remove_customer"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="update_customer" bindingOperationName="update_customer" type="Request-Response" outputName="update_customerResponse" inputName="update_customer" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Private-RPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:priv="http://informatique.polytech.unice.fr/soa1/payment/rpc/private">
+   <soapenv:Header>
+      <priv:id>49806613-0e81-4c86-9e2f-e9fd02adf669</priv:id>
+   </soapenv:Header>
+   <soapenv:Body>
+      <priv:update_customer>
+         <name>Geek, foo and bar</name>
+         <address>pouet</address>
+      </priv:update_customer>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/rpc/private/AdminRPC/update_customer"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PaymentRPCPublicServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/payment/rpc/public}PaymentRPCPublicServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/Payment-Public-RPC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/Payment-Public-RPC?wsdl"><con:part><con:url>http://localhost:8080/webservices/Payment-Public-RPC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PaymentRPCPublicService" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/rpc/public" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/payment/rpc/public" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/rpc/public" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="get_all_transactions_for_customer" type="tns:get_all_transactions_for_customer"/>
+      <xs:element name="get_all_transactions_for_customerResponse" type="tns:get_all_transactions_for_customerResponse"/>
+      <xs:element name="process_payment" type="tns:process_payment"/>
+      <xs:element name="process_paymentResponse" type="tns:process_paymentResponse"/>
+      <xs:element name="retailer" type="tns:retailer"/>
+      <xs:complexType name="get_all_transactions_for_customer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="get_all_transactions_for_customerResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="transactions" type="tns:transaction"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="transaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="transaction_amount" type="xs:double"/>
+          <xs:element minOccurs="0" name="card_number" type="xs:string"/>
+          <xs:element minOccurs="0" name="customer_info" type="xs:string"/>
+          <xs:element minOccurs="0" name="transaction_status" type="tns:status"/>
+        </xs:sequence>
+        <xs:attribute name="retailer" type="xs:IDREF"/>
+      </xs:complexType>
+      <xs:complexType name="retailer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="transactions">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="transaction" type="tns:transaction"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID"/>
+      </xs:complexType>
+      <xs:complexType name="process_payment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="card" type="xs:string"/>
+          <xs:element minOccurs="0" name="customer" type="xs:string"/>
+          <xs:element minOccurs="0" name="amount" type="xs:double"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="process_paymentResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="tns:status"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="status">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PROCESSING"/>
+          <xs:enumeration value="APPROVED"/>
+          <xs:enumeration value="DECLINED"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="UnknownRetailer" type="tns:UnknownRetailer"/>
+      <xs:complexType name="UnknownRetailer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="id" nillable="true" type="xs:string"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="get_all_transactions_for_customerResponse">
+    <wsdl:part element="tns:get_all_transactions_for_customerResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownRetailerFault">
+    <wsdl:part element="tns:UnknownRetailer" name="UnknownRetailerFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="process_payment">
+    <wsdl:part element="tns:process_payment" name="parameters"></wsdl:part>
+    <wsdl:part element="tns:id" name="id"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="process_paymentResponse">
+    <wsdl:part element="tns:process_paymentResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="get_all_transactions_for_customer">
+    <wsdl:part element="tns:get_all_transactions_for_customer" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RetailerRPC">
+    <wsdl:operation name="get_all_transactions_for_customer">
+      <wsdl:input message="tns:get_all_transactions_for_customer" name="get_all_transactions_for_customer"></wsdl:input>
+      <wsdl:output message="tns:get_all_transactions_for_customerResponse" name="get_all_transactions_for_customerResponse"></wsdl:output>
+      <wsdl:fault message="tns:UnknownRetailerFault" name="UnknownRetailerFault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="process_payment">
+      <wsdl:input message="tns:process_payment" name="process_payment"></wsdl:input>
+      <wsdl:output message="tns:process_paymentResponse" name="process_paymentResponse"></wsdl:output>
+      <wsdl:fault message="tns:UnknownRetailerFault" name="UnknownRetailerFault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PaymentRPCPublicServiceSoapBinding" type="tns:RetailerRPC">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="get_all_transactions_for_customer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="get_all_transactions_for_customer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="get_all_transactions_for_customerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownRetailerFault">
+        <soap:fault name="UnknownRetailerFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="process_payment">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="process_payment">
+        <soap:header message="tns:process_payment" part="id" use="literal"></soap:header>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="process_paymentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownRetailerFault">
+        <soap:fault name="UnknownRetailerFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaymentRPCPublicService">
+    <wsdl:port binding="tns:PaymentRPCPublicServiceSoapBinding" name="PaymentRPCPublicPort">
+      <soap:address location="http://localhost:8080/webservices/Payment-Public-RPC"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/Payment-Public-RPC</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="get_all_transactions_for_customer" bindingOperationName="get_all_transactions_for_customer" type="Request-Response" outputName="get_all_transactions_for_customerResponse" inputName="get_all_transactions_for_customer" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Public-RPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pub="http://informatique.polytech.unice.fr/soa1/payment/rpc/public">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pub:get_all_transactions_for_customer>
+         <!--Optional:-->
+         <id>s-001</id>
+      </pub:get_all_transactions_for_customer>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/rpc/public/RetailerRPC/get_all_transactions_for_customer"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="process_payment" bindingOperationName="process_payment" type="Request-Response" outputName="process_paymentResponse" inputName="process_payment" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Public-RPC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pub="http://informatique.polytech.unice.fr/soa1/payment/rpc/public">
+   <soapenv:Header>
+      <pub:id>s-001</pub:id>
+   </soapenv:Header>
+   <soapenv:Body>
+      <pub:process_payment>
+         <card>12345</card>
+         <customer>John doe</customer>
+         <amount>89</amount>
+      </pub:process_payment>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/rpc/public/RetailerRPC/process_payment"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Payment-Rest TestSuite"><con:description>TestSuite generated for REST Service [Payment]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Process Payment" searchProperties="true" id="b3bcc583-58ee-47d2-9238-d07e9ef2d93e"><con:description>Process a payment.</con:description><con:settings/><con:testStep type="restrequest" name="list transactions for s-002"><con:settings/><con:config service="Payment" methodName="GET" resourcePath="//rest/payment/public/{id}/transactions" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="list transactions for s-002" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/transactions</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="s-002" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="Count transactions"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>counter</con:name><con:sourceType>ResponseAsXml</con:sourceType><con:sourceStep>list transactions for s-002</con:sourceStep><con:sourcePath>count(//item)</con:sourcePath><con:targetType>counter_init</con:targetType><con:targetStep>#TestCase#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="process credit card"><con:settings/><con:config service="Payment" methodName="POST" resourcePath="//rest/payment/public/{id}/process" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="process credit card" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/process</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>PROCESSING</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
   <con:entry key="amount" value="42"/>
   <con:entry key="id" value="s-002"/>
   <con:entry key="card" value="123456"/>
   <con:entry key="customer" value="John Doe"/>
-</con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="list transactions after processing"><con:settings/><con:config service="Payment" methodName="GET" resourcePath="//rest/payment/public/{id}/transactions" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="list transactions after processing" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/transactions</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>John Doe</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="s-002" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="count transactions after"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>counter</con:name><con:sourceType>ResponseAsXml</con:sourceType><con:sourceStep xsi:nil="true"/><con:sourcePath>count(//item)</con:sourcePath><con:targetType>counter_after</con:targetType><con:targetStep>#TestCase#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="groovy" name="check counters"><con:settings/><con:config><script>def before = testRunner.testCase.getPropertyValue("counter_init");
+</con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="list transactions after processing"><con:settings/><con:config service="Payment" methodName="GET" resourcePath="//rest/payment/public/{id}/transactions" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="list transactions after processing" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/transactions</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>John Doe</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="s-002" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="count transactions after"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>counter</con:name><con:sourceType>ResponseAsXml</con:sourceType><con:sourceStep>list transactions after processing</con:sourceStep><con:sourcePath>count(//item)</con:sourcePath><con:targetType>counter_after</con:targetType><con:targetStep>#TestCase#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="groovy" name="check counters"><con:settings/><con:config><script>def before = testRunner.testCase.getPropertyValue("counter_init");
 def after  = testRunner.testCase.getPropertyValue("counter_after");  
 return after > before;</script></con:config></con:testStep><con:properties><con:property><con:name>counter_init</con:name><con:value>33</con:value></con:property><con:property><con:name>counter_after</con:name><con:value>37</con:value></con:property></con:properties></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Unknown Resources" searchProperties="true"><con:settings/><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Process Retailer" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="list retailers"><con:settings/><con:config service="Payment" methodName="GET" resourcePath="//rest/payment/private/retailers" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="list retailers" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/private/retailers</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="count retailers"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>count</con:name><con:sourceType>ResponseAsXml</con:sourceType><con:sourceStep>list retailers</con:sourceStep><con:sourcePath>count(//link)</con:sourcePath><con:targetType>retailers_init</con:targetType><con:targetStep>#TestCase#</con:targetStep></con:transfers></con:config></con:testStep><con:properties><con:property><con:name>retailers_init</con:name><con:value>3</con:value></con:property></con:properties></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
