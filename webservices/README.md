@@ -2,9 +2,11 @@
 
 This section assumes that you meet the following requirements:
 
-  * [Java 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) (should be ok with 1.7, edit the `pom` file and check it out, feedback appreciated)
+  * [Java 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
   * [Maven 3](http://maven.apache.org/download.cgi)  
   * [SoapUI](http://sourceforge.net/projects/soapui/files/)
+
+If you are using a proxy to access to the internet, SoapUI might freeze at startup (symptom: splash screen displayed and nothing else happen). Disable your proxy (*padawan* level), or be sure that the proxy is correctly configured with respect to your operating system (it might require ~~system administration~~ *Jedi* powers).
 
 # Setup
 
@@ -30,7 +32,7 @@ The project is a classical Maven project. As a consequence, one can easily impor
 ## Creating your own services
 
 <p align=center>
-<a href="url"><img src="http://infiltrated.net/mgz/monkey_see_do.gif" height="150" width="150" ></a>
+<img src="http://infiltrated.net/mgz/monkey_see_do.gif" height="150" width="150" >
 </p>
 
 We'll use a *monkey see, monkey do* approach for the setup of your environment. If you are interested by Maven and TomEE+ (or any other service container), you can of course investiguate how to setup a production environment by yourself. 
@@ -47,8 +49,10 @@ For the others, you can follow the follwing steps:
  
 # Available Examples 
 
-  * [Calculator](id:calculator) 
-  * Payment
+  * [Calculator](#calculator) 
+  * [Payment](#payment)
+
+The examples described in this showroom follows the [Smurf naming convention](http://www.codedairy.com/blog/smurf-naming-convention), which is usually an anti-pattern. This is a simple way to avoid name conflict as this library implements each example 3 times. **Do not follow the same naming convention in your code**! You are not supposed to postfix (nor prefix) your services by any extra-information. Focus on the design good services and good APIs.
 
 ## [Calculator](id:calculator)
 
@@ -70,17 +74,17 @@ The functional tests, written with SoapUI, are available in the `Calculator-Soap
   * Generated WSDL: [http://localhost:8080/webservices/CalculatorRPC?wsdl]()
 
   
-The service exposes 2 operations: `sumInetegers` and `multiplyIntegers`. Each operation takes as input two integers `left` and `right`, and produces as a result of its invocation the `sum` or the `product`.
+The service exposes 2 operations: `sumIntegers` and `multiplyIntegers`. Each operation takes as input two integers `left` and `right`, and produces as a result of its invocation the `sum` or the `product`.
 
 In SoapUI, the `CalculatorRPCServiceSoapBinding` entry describes samples requests and responses to interact with the deployed service. The `CalculatorRPC TestSuite` includes 2 test cases (one per operation). Each test case consists in a request to the service and an assertion on the received result.
 
 ### Document Implementation
 
-  * Java Interface: `doc.CalculatorDoc`
-      * Input Message: `doc.CalculatorInput`
-      * Output Message: `doc.CalculatorOutput`
-      * Fault Message: `doc.UnsuportedArgumentFault`
-  * Java Implementation: `doc.CalculatorDocImpl`
+  * Java Interface: `doc.CalculatorDoc.java`
+      * Input Message: `doc.CalculatorInput.java`
+      * Output Message: `doc.CalculatorOutput.java`
+      * Fault Message: `doc.UnsuportedArgumentFault.java`
+  * Java Implementation: `doc.CalculatorDocImpl.java`
   * Generated WSDL: [http://localhost:8080/webservices/CalculatorDOC?WSDL]()
 
 The service exposes one single entry point, with an operation called `execute`. This operation process its input message (a request to perform an *addition* or a *product*) to yield an output message, containing the processed data.
@@ -92,7 +96,8 @@ In SoapUI, the `CalculatorDOCServiceSoapBinding` gives 2 examples of SOAP messag
 
 ### REST Implementation
 
-  * Java Implementation: `rest.CalculatorREST`
+  * Java Interface: `rest.CalculatorREST.java` 
+  * Java Implementation: `rest.CalculatorRESTImpl.java`
   * Generated WADL: [http://localhost:8080/rest/calculator/?_wadl]()    
   * Resources:
       * `adder`: [http://localhost:8080/rest/calculator/adder]
@@ -101,7 +106,7 @@ In SoapUI, the `CalculatorDOCServiceSoapBinding` gives 2 examples of SOAP messag
 This service illustrates the use of `GET` and `POST` methods on top of the HTTP protocol. The first resource defined is the `adder`, which relies on a `GET` method. Parameters are given as path parameters. The second resource is the `multiplier`, which expects parameters as part of the body of a `POST` request.    
 
 
-## Payment
+## [Payment](id:payment)
 
 The example is organized according to the following directory structure.
 
@@ -112,18 +117,45 @@ The example is organized according to the following directory structure.
 
 ### Specifications: CréditGénéral
 
-The service is provided by a bank named *CréditGénéral* (a portmanteau made by coupling 2 French bank names). It targets two classes of users: *(i)* comercial agent working at CréditGénéral, and *(ii)* retailers exploiting the payment service offered by the bank
+The service is provided by a bank named *CréditGénéral* (a portmanteau made by coupling 2 French bank names). It targets two classes of users: *(i)* commercial agent working at CréditGénéral, and *(ii)* retailers exploiting the payment service offered by the bank
 
   * **Commercial agent**: She handle a set of customers who pay for using the CréditGénéral as their business bank. She can edit the information about each retailers (*e.g.*, address, name), add new retailers in the system or delete retailers.
-  * **Retailer**: a retailer can exploit the service by requesting it to process a transaction, or listing the transaction that were already processed.
+  * **Retailer**: a retailer can exploit the service by requesting it to process a transaction (a payment using debit/credit cards), or listing the transaction that were already processed.
 
-The follwing implementations are iso-functionals, and provide the very same level of service, based on a shared set of business objects.
+The following implementations are iso-functionals, and provide the very same level of service, based on a shared set of business objects. The topic of this cours is not persistence nor data storage, thus we are relying on static sets of instances to *mock* a database. **You should use the very same assumption in your own project, the goal of this cours is the design of Service API and their integration, not the database storage part**.
 
-  
+<p align="center">
+<img src="https://raw.githubusercontent.com/polytechnice-si/5A-2014-SOA1/master/webservices/src/main/java/fr/unice/polytech/soa1/payment/business_model.png" />
+</p>
 
 ### RPC Implementation
 
-### Document Implmentation
+### Document Implementation
 
 ### REST Implementation
+
+The REST implementation relies on two different set of resources, classified according to their URI: `private` resources should be restricted (*e.g.*, thanks to a firewall) to the commercial agent, and the `public` ones should be available for retailers. Obviously, a real life deployment will use [security mechanisms](https://jersey.java.net/documentation/latest/security.html) to restrict access for each retailer. One advantage is that such authentication can be done on top of plain HTTP mechanisms.
+
+  * Public WADL (for customers): [http://localhost:8080/rest/payment/public?_wadl]() (`rest.RetailerRest`)
+  * Private WADL (for authorized agents): [http://localhost:8080/rest/payment/public?_wadl]() (`rest.AdminRest`)
+  
+The following resources are exposed. One can notice that the relative paths for each resources are defined in the java Interface, and that the concrete root path is associated to the concrete implementation of the resources.
+
+  * `/rest/payment/public/{id}/transactions`:
+      * `GET`: returns the transactions associated to the customer identified by the given `id`
+  * `/rest/payment/public/{id}/process`:
+      * `POST`: the process used to perform a payment for customer `id`.
+      
+  * `/rest/payment/private/retailers`:
+      * `GET`: returns a list of links to registered retailers
+      * `POST`: create a new retailer (status code: 201), available as a new resource
+  * `/rest/payment/private/retailers/{id}`:
+      * `GET`: read the information stored for a given retailer
+      * `PUT`: update an existing retailer with new information
+      * `DEL`: delete an existing retailer
+  * Unknown resources (*i.e.*, unknown `id`) returns a 404 status code.
+  
+
+  
+
   
