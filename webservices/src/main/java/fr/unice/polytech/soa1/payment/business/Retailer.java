@@ -69,7 +69,7 @@ public class Retailer extends JobResult {
 	}
 
 	@Override
-	public boolean equals (Object that) {
+	public boolean equals (Object that) {  // Necessary for object stored in collections ( => find, remove, ...)
 		return  (this == that || (that instanceof Retailer && this.id.equals(((Retailer) that).id)));
 	}
 

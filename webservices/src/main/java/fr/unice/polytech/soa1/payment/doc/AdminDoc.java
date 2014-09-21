@@ -1,7 +1,7 @@
 package fr.unice.polytech.soa1.payment.doc;
 
 
-import fr.unice.polytech.soa1.payment.doc.inputs.AdminInput;
+import fr.unice.polytech.soa1.payment.doc.inputs.manual.AdminInput;
 import fr.unice.polytech.soa1.payment.doc.inputs.BadJobFault;
 import fr.unice.polytech.soa1.payment.doc.outputs.AdminOutput;
 

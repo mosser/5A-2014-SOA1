@@ -154,6 +154,24 @@ The following operations are exposed by the two services.
 
 ### Document Implementation
 
+The document implementation exposes to message receivers: a public one for retailers, and a private one for commercial agents.
+
+  * Public WSDL: [http://localhost:8080/webservices/Payment-Public-DOC?wsdl]() (`doc.RetailerDoc.java`)
+  * Private WSDL: [http://localhost:8080/webservices/Payment-Private-DOC?wsdl]() (`doc.AdminDoc.java`)
+
+
+The `private` receiver accepts as input a sequence of jobs to be executed. For example, one can *batch* a sequence of administration requests (customer deletion) and submit it for asynchronous execution. The available kind of jobs are: `GET_ALL`, `REGISTER`, `DESCRIBE`, `UPDATE` and `DELETE` (see `doc.inputs.manual.AdminJobKind.java`). The `public` receiver accepts as input a request to list the transactions associated to a set of retailers (`doc.inputs.polymorphism.ListTransactions.java`), or a request to process a set of payments (`doc.inputs.polymorphism.ProcessPayment.java`).
+
+This example is used to illustrate how input message diversity can be handled at the interface level. 
+
+  * The `private` receiver relies on a single message structure, and it adapts its behavior manually according to the content of the received message (like the calculator one). 
+  * The `public` one exposes several acceptable input messages, and relies on polymorphism at the code level to process each submitted message. 
+  
+The first approach is more easy to develop and uses less classes, but costs you maintainability of the service and readability of the API. The latter approach is painful with respect to the number of message classes you'll have to define, but forces you to clearly explicits which messages are acceptable and which are not. **As usual in software architecture, trade-offs are the key**, and each situation should be analyzed properly to decide which kind of approach should be used. The choice will impact the server side implementation, but also the client one as the service interface will be impacted.
+
+The outputs of the two services relies on the polymorphic approach, as it is the most natural in this case: the services respond clearly different kind of information.
+
+
 ### REST Implementation
 
 The REST implementation relies on two different set of resources, classified according to their URI: `private` resources should be restricted (*e.g.*, thanks to a firewall) to the commercial agent, and the `public` ones should be available for retailers. Obviously, a real life deployment will use [security mechanisms](https://jersey.java.net/documentation/latest/security.html) to restrict access for each retailer. One advantage is that such authentication can be done on top of plain HTTP mechanisms.

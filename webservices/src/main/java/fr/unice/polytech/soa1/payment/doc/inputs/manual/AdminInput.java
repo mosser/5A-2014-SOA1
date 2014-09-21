@@ -1,4 +1,4 @@
-package fr.unice.polytech.soa1.payment.doc.inputs;
+package fr.unice.polytech.soa1.payment.doc.inputs.manual;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;

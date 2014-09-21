@@ -3,8 +3,8 @@ package fr.unice.polytech.soa1.payment.doc;
 
 import fr.unice.polytech.soa1.payment.business.DataAccessObject;
 import fr.unice.polytech.soa1.payment.business.Retailer;
-import fr.unice.polytech.soa1.payment.doc.inputs.AdminInput;
-import fr.unice.polytech.soa1.payment.doc.inputs.AdminQuery;
+import fr.unice.polytech.soa1.payment.doc.inputs.manual.AdminInput;
+import fr.unice.polytech.soa1.payment.doc.inputs.manual.AdminQuery;
 import fr.unice.polytech.soa1.payment.doc.inputs.BadJobFault;
 import fr.unice.polytech.soa1.payment.doc.outputs.AdminOutput;
 import fr.unice.polytech.soa1.payment.doc.outputs.Information;

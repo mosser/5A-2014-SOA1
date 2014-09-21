@@ -4,5 +4,7 @@ import fr.unice.polytech.soa1.payment.business.Retailer;
 
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-@XmlSeeAlso({ListOfRetailers.class, Information.class, Retailer.class})
+// Support polymorphism at the XML serialization level
+@XmlSeeAlso({	Information.class, Retailer.class,
+				ListOfRetailers.class, ListOfInformation.class, ListOfTransactions.class	})
 public abstract class JobResult {}

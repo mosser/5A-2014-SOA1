@@ -28,9 +28,8 @@ public class DataAccessObject {
 		for(Retailer r: contents) {
 			builder.append(String.format("[%s] %s - %s :\n", r.getId(),r.getName(), r.getAddress()));
 			for(Transaction t: r.getTransactions()) {
-				String trans = String.format("  [%s] %3.2f / %s %s \n",
-											 t.getCardNumber(), t.getAmount(), t.getCustomer(), t.getStatus());
-				builder.append(trans);
+				builder.append(t.toString());
+				builder.append("\n");
 			}
 			builder.append("\n");
 		}

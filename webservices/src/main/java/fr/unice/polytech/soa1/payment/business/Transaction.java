@@ -30,6 +30,11 @@ public class Transaction {
 		this.status = that.status;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("  [%s] %3.2f / %s %s", getCardNumber(), getAmount(), getCustomer(), getStatus());
+	}
+
 	@XmlElement(name="transaction_status")
 	public Status getStatus() {
 		return status;

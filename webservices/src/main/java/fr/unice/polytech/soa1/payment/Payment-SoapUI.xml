@@ -486,7 +486,441 @@
          <amount>89</amount>
       </pub:process_payment>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/rpc/public/RetailerRPC/process_payment"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Payment-Rest TestSuite"><con:description>TestSuite generated for REST Service [Payment]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Process Payment" searchProperties="true" id="b3bcc583-58ee-47d2-9238-d07e9ef2d93e"><con:description>Process a payment.</con:description><con:settings/><con:testStep type="restrequest" name="list transactions for s-002"><con:settings/><con:config service="Payment" methodName="GET" resourcePath="//rest/payment/public/{id}/transactions" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="list transactions for s-002" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/transactions</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="s-002" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="Count transactions"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>counter</con:name><con:sourceType>ResponseAsXml</con:sourceType><con:sourceStep>list transactions for s-002</con:sourceStep><con:sourcePath>count(//item)</con:sourcePath><con:targetType>counter_init</con:targetType><con:targetStep>#TestCase#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="process credit card"><con:settings/><con:config service="Payment" methodName="POST" resourcePath="//rest/payment/public/{id}/process" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="process credit card" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/process</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>PROCESSING</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/rpc/public/RetailerRPC/process_payment"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PaymentDOCPrivateServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/payment/doc/private}PaymentDOCPrivateServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080//webservices/Payment-Private-DOC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080//webservices/Payment-Private-DOC?wsdl"><con:part><con:url>http://localhost:8080//webservices/Payment-Private-DOC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PaymentDOCPrivateService" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/doc/private" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/payment/doc/private" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://informatique.polytech.unice.fr/soa1/payment/doc">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/doc/private" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="retailer" type="tns:retailer"/>
+      <xs:element name="submit" type="tns:submit"/>
+      <xs:element name="submitResponse" type="tns:submitResponse"/>
+      <xs:complexType name="submit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="jobs" type="tns:admin_input"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="admin_input">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="jobs">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="job" type="tns:admin_query"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="admin_query">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="retailer_address" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="retailer_name" nillable="true" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="retailer" type="xs:string"/>
+        <xs:attribute name="kind" type="tns:adminJobKind" use="required"/>
+      </xs:complexType>
+      <xs:complexType name="submitResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="result" type="tns:admin_output"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="admin_output">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="results">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:jobResult"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="jobResult">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="admin_info">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contents" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="retailer">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="address" type="xs:string"/>
+              <xs:element minOccurs="0" name="name" type="xs:string"/>
+              <xs:element minOccurs="0" name="transactions">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="transaction" type="tns:transaction"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="transaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="transaction_amount" type="xs:double"/>
+          <xs:element minOccurs="0" name="card_number" type="xs:string"/>
+          <xs:element minOccurs="0" name="customer_info" type="xs:string"/>
+          <xs:element minOccurs="0" name="transaction_status" type="tns:status"/>
+        </xs:sequence>
+        <xs:attribute name="retailer" type="xs:IDREF"/>
+      </xs:complexType>
+      <xs:complexType name="list_of_retailers">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="retailers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="retailer_id" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="list_of_information">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="information" type="tns:admin_info"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="list_of_transactions">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="transaction" type="tns:transaction"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:simpleType name="adminJobKind">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="GET_ALL"/>
+          <xs:enumeration value="REGISTER"/>
+          <xs:enumeration value="DESCRIBE"/>
+          <xs:enumeration value="UPDATE"/>
+          <xs:enumeration value="DELETE"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="status">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PROCESSING"/>
+          <xs:enumeration value="APPROVED"/>
+          <xs:enumeration value="DECLINED"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/doc" xmlns:tns="http://informatique.polytech.unice.fr/soa1/payment/doc">
+      <xsd:element name="BadJobFault" type="tns:BadJobFault"/>
+      <xsd:complexType name="BadJobFault">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="submit">
+    <wsdl:part element="tns:submit" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitResponse">
+    <wsdl:part element="tns:submitResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BadJobFault">
+    <wsdl:part element="ns1:BadJobFault" name="BadJobFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AdminDoc">
+    <wsdl:operation name="submit">
+      <wsdl:input message="tns:submit" name="submit"></wsdl:input>
+      <wsdl:output message="tns:submitResponse" name="submitResponse"></wsdl:output>
+      <wsdl:fault message="tns:BadJobFault" name="BadJobFault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PaymentDOCPrivateServiceSoapBinding" type="tns:AdminDoc">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="submit">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="submit">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="submitResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="BadJobFault">
+        <soap:fault name="BadJobFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaymentDOCPrivateService">
+    <wsdl:port binding="tns:PaymentDOCPrivateServiceSoapBinding" name="PaymentDOCPrivatePort">
+      <soap:address location="http://localhost:8080/webservices/Payment-Private-DOC"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/Payment-Private-DOC</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="submit" bindingOperationName="submit" type="Request-Response" outputName="submitResponse" inputName="submit" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Private-DOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:priv="http://informatique.polytech.unice.fr/soa1/payment/doc/private">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <priv:submit>
+         <jobs>
+            <jobs>
+               <job kind="GET_ALL" />
+               <job kind="REGISTER">
+               	<retailer_name>A Name</retailer_name>
+               	<retailer_address>nowhere</retailer_address>
+               </job>
+               <job kind="GET_ALL" />
+               <job kind="DESCRIBE" retailer="s-001" />
+               <job kind="UPDATE" 	 retailer="s-001">
+               	<retailer_name>New first retailer name</retailer_name>
+               	<retailer_address>somewhere else</retailer_address>
+               </job>
+               <job kind="DESCRIBE" retailer="s-001" />
+               <job kind="DELETE" 	 retailer="s-001" />
+               <job kind="GET_ALL" />
+            </jobs>
+         </jobs>
+      </priv:submit>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/doc/private/AdminDoc/submit"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PaymentDOCPublicServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/payment/doc/public}PaymentDOCPublicServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/Payment-Public-DOC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/Payment-Public-DOC?wsdl"><con:part><con:url>http://localhost:8080/webservices/Payment-Public-DOC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PaymentDOCPublicService" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/doc/public" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/payment/doc/public" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://informatique.polytech.unice.fr/soa1/payment/doc">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/doc/public" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="process" type="tns:process"/>
+      <xs:element name="processResponse" type="tns:processResponse"/>
+      <xs:element name="retailer" type="tns:retailer"/>
+      <xs:complexType name="process">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="request" type="tns:retailerInput"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="retailerInput">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="list_transactions">
+        <xs:complexContent>
+          <xs:extension base="tns:retailerInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="retailers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="identifier" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="process_payments">
+        <xs:complexContent>
+          <xs:extension base="tns:retailerInput">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="payments">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="item" type="tns:payment_item"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="payment_item">
+        <xs:sequence>
+          <xs:element name="amount" type="xs:double"/>
+          <xs:element name="card_number" type="xs:string"/>
+          <xs:element name="customer_name" type="xs:string"/>
+          <xs:element name="retailer_identifier" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="processResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="result" type="tns:jobResult"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType abstract="true" name="jobResult">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="admin_info">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="contents" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="retailer">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="address" type="xs:string"/>
+              <xs:element minOccurs="0" name="name" type="xs:string"/>
+              <xs:element minOccurs="0" name="transactions">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="transaction" type="tns:transaction"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="transaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="transaction_amount" type="xs:double"/>
+          <xs:element minOccurs="0" name="card_number" type="xs:string"/>
+          <xs:element minOccurs="0" name="customer_info" type="xs:string"/>
+          <xs:element minOccurs="0" name="transaction_status" type="tns:status"/>
+        </xs:sequence>
+        <xs:attribute name="retailer" type="xs:IDREF"/>
+      </xs:complexType>
+      <xs:complexType name="list_of_retailers">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="retailers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="retailer_id" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="list_of_information">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="information" type="tns:admin_info"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="list_of_transactions">
+        <xs:complexContent>
+          <xs:extension base="tns:jobResult">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="transaction" type="tns:transaction"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:simpleType name="status">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="PROCESSING"/>
+          <xs:enumeration value="APPROVED"/>
+          <xs:enumeration value="DECLINED"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/payment/doc" xmlns:tns="http://informatique.polytech.unice.fr/soa1/payment/doc">
+      <xsd:element name="BadJobFault" type="tns:BadJobFault"/>
+      <xsd:complexType name="BadJobFault">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BadJobFault">
+    <wsdl:part element="ns1:BadJobFault" name="BadJobFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="processResponse">
+    <wsdl:part element="tns:processResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="process">
+    <wsdl:part element="tns:process" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RetailerDoc">
+    <wsdl:operation name="process">
+      <wsdl:input message="tns:process" name="process"></wsdl:input>
+      <wsdl:output message="tns:processResponse" name="processResponse"></wsdl:output>
+      <wsdl:fault message="tns:BadJobFault" name="BadJobFault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PaymentDOCPublicServiceSoapBinding" type="tns:RetailerDoc">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="process">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="process">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="processResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="BadJobFault">
+        <soap:fault name="BadJobFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaymentDOCPublicService">
+    <wsdl:port binding="tns:PaymentDOCPublicServiceSoapBinding" name="PaymentDOCPublicPort">
+      <soap:address location="http://localhost:8080/webservices/Payment-Public-DOC"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/Payment-Public-DOC</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="process" bindingOperationName="process" type="Request-Response" outputName="processResponse" inputName="process" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="process payment"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Public-DOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pub="http://informatique.polytech.unice.fr/soa1/payment/doc/public">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pub:process>
+         <!--Optional:-->
+         <request xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="pub:process_payments">
+         	 <payments>
+         	   <item>
+         	     <retailer_identifier>s-001</retailer_identifier>
+         	     <card_number>123456789</card_number>
+         	     <customer_name>John doe</customer_name>
+         	     <amount>22.5</amount>
+         	   </item>
+         	   <item>
+         	     <retailer_identifier>s-002</retailer_identifier>
+         	     <card_number>123456789</card_number>
+         	     <customer_name>John doe</customer_name>
+         	     <amount>55.2</amount>
+         	   </item>         	   
+         	 </payments>
+         </request>
+      </pub:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/doc/public/RetailerDoc/process_request"/><con:wsrmConfig version="1.2"/></con:call><con:call name="transactions"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/Payment-Public-DOC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pub="http://informatique.polytech.unice.fr/soa1/payment/doc/public">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pub:process >
+         <request xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="pub:list_transactions">
+         <retailers>
+         	<identifier>s-001</identifier>
+         	<identifier>s-002</identifier>
+         	<!--<identifier>s-003</identifier>-->
+         </retailers>
+         </request>
+      </pub:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/payment/doc/public/RetailerDoc/process_request"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Payment-Rest TestSuite"><con:description>TestSuite generated for REST Service [Payment]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Process Payment" searchProperties="true" id="b3bcc583-58ee-47d2-9238-d07e9ef2d93e"><con:description>Process a payment.</con:description><con:settings/><con:testStep type="restrequest" name="list transactions for s-002"><con:settings/><con:config service="Payment" methodName="GET" resourcePath="//rest/payment/public/{id}/transactions" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="list transactions for s-002" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/transactions</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="s-002" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="Count transactions"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>counter</con:name><con:sourceType>ResponseAsXml</con:sourceType><con:sourceStep>list transactions for s-002</con:sourceStep><con:sourcePath>count(//item)</con:sourcePath><con:targetType>counter_init</con:targetType><con:targetStep>#TestCase#</con:targetStep></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="process credit card"><con:settings/><con:config service="Payment" methodName="POST" resourcePath="//rest/payment/public/{id}/process" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="process credit card" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost//rest/payment/public/s-002/process</con:originalUri><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>PROCESSING</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
   <con:entry key="amount" value="42"/>
   <con:entry key="id" value="s-002"/>
   <con:entry key="card" value="123456"/>
