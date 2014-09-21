@@ -1,13 +1,15 @@
 package fr.unice.polytech.soa1.payment.business;
 
 
+import fr.unice.polytech.soa1.payment.doc.outputs.JobResult;
+
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @XmlType
 @XmlRootElement(name = "retailer")
-public class Retailer {
+public class Retailer extends JobResult {
 
 	private String id;
 	private String name;
@@ -21,6 +23,15 @@ public class Retailer {
 		this.name = name;
 		this.address = address;
 		this.transactions = new ArrayList<>();
+	}
+
+	public Retailer(Retailer that) {  // copy constructor
+		this(that.id, that.name, that.address);
+		for(Transaction t: that.transactions) {
+			Transaction clone = new Transaction(t);
+			clone.setRetailer(this);
+			this.getTransactions().add(clone);
+		}
 	}
 
 	@XmlAttribute(name="id")

@@ -25,6 +25,11 @@ public class Transaction {
 		this.status = Status.PROCESSING;
 	}
 
+	public Transaction(Transaction that) { // Copy Constructor
+		this(that.cardNumber, that.customer, that.amount, that.retailer);
+		this.status = that.status;
+	}
+
 	@XmlElement(name="transaction_status")
 	public Status getStatus() {
 		return status;
