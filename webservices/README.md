@@ -39,7 +39,7 @@ We'll use a *monkey see, monkey do* approach for the setup of your environment. 
 
 For the others, you can follow the follwing steps:
 
-1. create a new directory, *e.g.*, `my-ws`, with two sub-directories: `src/main/java` and `webapp/WEB-INF`
+1. create a new directory, *e.g.*, `webservices`, with two sub-directories: `src/main/java` and `webapp/WEB-INF`
 2. copy the contents of the `./pom.xml` file into your directory
 3. copy the contents of the `./webapp/WEB-INF/web.xml` file into your `webapp/WEB-INF` directory
 4. edit your copy of the `pom.xml` file:
