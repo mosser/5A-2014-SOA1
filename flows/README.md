@@ -1,6 +1,7 @@
 # ESB Dataflow Integration demonstration
 
 * Author: Sébastien Mosser <[mosser@i3s.unice.fr]()>
+* Version: 2.0 [10.2014]
 
 This demonstration is freely inspired by the Norwegian tax adminstration system. It does not reflect reality *as is*, and aims in priority to demonstrate ESB integration capabilities.
 
@@ -38,21 +39,39 @@ The TAIS is an old system, in production since 1992. It exports data as CSV file
 
 The following business objects are identified as relevant to support message exchange between the TAIS and the TCS:
 
-* `TaxPayer`: describes what the system knows about a tax payer, *e.g.*, name, address, income.
-* `TaxForm`: describes the information that wil be sent by snail mail to the tax payer (here the amount of tax to be payed).
+* [`TaxPayer`](): describes what the system knows about a tax payer, *e.g.*, name, address, income. It relies on two sattelite business objects, *i.e.*, [`Address`]() and [`Assets`](). 
+* [`TaxForm`](): describes the information that wil be sent by snail mail to the tax payer (here the amount of tax to be payed).
 
-To trigger the integration flows from the outside of the ESB, we use a Web Service exposition, named `TaxSystem`. The following operations will be exposed to trigger the main integration flows:
+To trigger the integration flows from the outside of the ESB, we use a Web Service exposition, named `TaxSystem`. The two following operations will be exposed to trigger the main integration flows:
 
 * `HandleATaxPayer`: based on a given `TaxPayer`, it generates the associated `TaxForm`
-* `ConsultTaxForm`: based on information filled in a webform (*e.g.*, lastname, firstname, zipcode), return the amount of taxes to be payed by this person [^1].
+* `ConsultTaxes`: based on information filled in a webform (*e.g.*, lastname, firstname, zipcode), return the amount of taxes to be payed by this person. Yes, you can consult how much taxes your neighbor will pay. This **is** Norway. 
 
-[^1]: Yes, you can consult how much taxes your neighbor will pay. This **is** Norway. 
-
-The interface (as a Java Interface) of this service is available here: [TaxSystem](). Contrarily to the web services implemented in the previous lab, here the implementation of interface will be done using integration flows instead of plain old java code.
+The interface (as a Java Interface) of this service is available here: [`TaxSystem`](). Contrarily to the web services implemented in the previous lab, here the implementation of interface will be done using integration flows instead of plain old java code.
 
 ### Step #1: Expose Mock answers for `TaxSystem` operations
 
 The first step is to expose the `TaxPayer` service using the bus mechanisms. Operations responses will be "mocked" with hard-coded data. This first step will ensure that our bus is up and running, and that one can invoke our integration flows.
+
+![step 1 flow](https://raw.githubusercontent.com/polytechnice-si/5A-2014-SOA1/master/flows/pictures/step1.png "Step #1")
+
+**Flow description**: The service will be exposed through an HTTP server, listening to port `8081`. We’ll use the path `http://localhost:8081/ts/` to locate it. The received messaged is then transferred to a SOAP processor (CXF library), referencing the `TaxSystem` Java interface. As the interface can receive 2 different kid of messages (*i.e.*, `HandleATaxPayer` and `ConsultTaxes`), the flow needs to know which operation is invoked. We use a variable named `operation` to store this information (located in `flowVars.cxf_operation.localPart`). Then, a choice-based router is used to route the message to the good processing chain:
+
+* If the message is equals to `HandleATaxPayer`, we use a Groovy script to initialize an hard-coded instance of `TaxForm` to be returned.
+* If the message is requals to `ConsultTaxes`, we use a simple payload assignment to set the response message paylod to `0.0f`.
+
+For convenience purpose, we use logger components to visualize which branch is triggered at runtime. The groovy script to be used for `HandleATaxPayer` is described here:
+
+    import fr.polytech.unice.soa1.taxSystem.business.*;
+    def taxpayer = (TaxPayer) message.payload;
+    def form = new TaxForm();
+    form.setLastName(taxpayer.getLastName());
+    form.setFirstName(taxpayer.getFirstName());
+    form.setTaxAmount(0.0);
+    return form;
+    
+The exposed service is available here: [http://localhost:8081/ts/TaxSystem?wsdl]()
+
 
 
 
