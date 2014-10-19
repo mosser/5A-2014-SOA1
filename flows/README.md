@@ -97,7 +97,11 @@ For example, here is the Data Transformer script associated to the `Xml<complexR
     output.lastName = inputArguments.taxpayer.lastName;
 
 
+### Step #4: Generating unique Identifiers
 
+### Step #5: Processing CSV files
+
+### Step #6: Consulting the processed data
 
 
 
