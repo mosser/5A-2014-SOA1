@@ -81,8 +81,20 @@ Still relying on an hard-coded computation, we now extract the handling of a giv
 
 ### Step #3: Route the messages to the TCS
 
+Now, we release the hard-coded answers to properly invoke the real services implemented in the TCS. We implement each of the invocation as a *sub-flow*. Contrarily to internal flows with virtual machine connectors, sub-flows are not callable, and implements "patterns" to be reused in other flows. It is another way to modularize the integration flows using Mule. The *simple* and *complex* sub-flows are simillar, so wel’ll hust here focus on the *complex* one. In this sub-flow, we start by generating an unique `identifier`, as the request to the TCS must be anonymized. We are still using an hard-coded identifier for now. Then, we store the current `taxpayer` into another variable, to be able to retrieve the associated personal information after having computed the taxes. The *WebService Consumer*, connected to the `complex` operation of the `ExternalTaxComputation` service, is surrounded by two data transformers. The first one fills the request to be sent, and the second one tramsform the received response into a `TaxForm`. These two transformers uses the previously filled variables as extra *input arguments*.
 
+![step 3 flow](https://raw.githubusercontent.com/polytechnice-si/5A-2014-SOA1/master/flows/pictures/step3.png "Step #3")
 
+**Warning**: The Mule system relies on the two following assumptions:
+
+* The *WebService Consumer* assumes that the WSDL contract is stored locally.
+* Data transformers consider POJO as beans. Thus, writing `foo = myObject.aField` will actually execute `foo = myObject.getAField()`. Directly calling `myObject.getAField()` will return `null`.
+
+For example, here is the Data Transformer script associated to the `Xml<complexResponse> to TaxForm` filter:
+
+    output.taxAmount = input.amount;
+    output.firstName = inputArguments.taxpayer.firstName;
+    output.lastName = inputArguments.taxpayer.lastName;
 
 
 

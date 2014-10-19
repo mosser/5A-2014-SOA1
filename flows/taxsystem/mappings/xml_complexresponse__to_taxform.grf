@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Graph __version="3.5.0" author="mosser" created="Sun Oct 19 19:34:58 CEST 2014" description="Xml&lt;complexResponse&gt; to TaxForm" guiVersion="3.4.4.P" id="1413757008571" licenseCode="Unlicensed" licenseType="Unknown" modified="Sun Oct 19 19:34:58 CEST 2014" modifiedBy="mosser" name="Xml_complexResponse__to_TaxForm" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __schemaType="{http://tcs.skatteetaten.soa1.polytech.unice.fr/}complexResponse" __sourcePath="{http://tcs.skatteetaten.soa1.polytech.unice.fr/=ns0}/ns0:complexResponse" _dataStructure="OBJECT" _id="__id" _type="Input" id="e607eb8f-3acd-452c-a738-56bebf35aac8">
+<Record fieldDelimiter="," name="complexResponse" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __schemaType="{http://tcs.skatteetaten.soa1.polytech.unice.fr/}taxComputation" __sourcePath="{http://tcs.skatteetaten.soa1.polytech.unice.fr/=ns0}/ns0:complexResponse/complex_result/amount" containerType="SINGLE" label="amount" name="amount" type="number"/>
+<Field __index="1" __schemaType="{http://tcs.skatteetaten.soa1.polytech.unice.fr/}taxComputation" __sourcePath="{http://tcs.skatteetaten.soa1.polytech.unice.fr/=ns0}/ns0:complexResponse/complex_result/date" containerType="SINGLE" label="date" name="date" type="string"/>
+<Field __index="2" __schemaType="{http://tcs.skatteetaten.soa1.polytech.unice.fr/}taxComputation" __sourcePath="{http://tcs.skatteetaten.soa1.polytech.unice.fr/=ns0}/ns0:complexResponse/complex_result/identifier" containerType="SINGLE" label="identifier" name="identifier" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="413b8474-977a-4381-ad58-ae53f36797d0">
+<Record fieldDelimiter="," name="TaxForm" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/firstName" containerType="SINGLE" label="firstName" name="firstName" type="string"/>
+<Field __index="1" __sourcePath="{}/object/lastName" containerType="SINGLE" label="lastName" name="lastName" type="string"/>
+<Field __index="2" __sourcePath="{}/object/taxAmount" containerType="SINGLE" label="taxAmount" name="taxAmount" type="number"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+<Entry dictval.__javaType="fr.polytech.unice.soa1.taxSystem.business.TaxPayer" id="DictionaryEntry2" input="true" name="taxpayer" output="false" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Pojo WRITER" guiX="900" guiY="20" id="BEAN_WRITER0" type="BEAN_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <firstName>$0.firstName</firstName>
+  <lastName>$0.lastName</lastName>
+  <taxAmount>$0.taxAmount</taxAmount>
+</object>]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<schema-object>
+  <typed-object-ref type-ref="fr.polytech.unice.soa1.taxSystem.business.TaxForm"/>
+  <typed-object type="fr.polytech.unice.soa1.taxSystem.business.TaxForm">
+    <typed-object-ref name="firstName" type-ref="java.lang.String"/>
+    <typed-object-ref name="lastName" type-ref="java.lang.String"/>
+    <typed-object-ref name="taxAmount" type-ref="float"/>
+  </typed-object>
+  <typed-object type="java.lang.String"/>
+  <typed-object type="float"/>
+</schema-object>
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'ns0:complexResponse' -&gt; 'object'" guiX="460" guiY="20" id="FOREACH_NS0_COMPLEX_RESPONSE_OBJECT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.taxAmount = input.amount;
+output.firstName = inputArguments.taxpayer.firstName;
+output.lastName = inputArguments.taxpayer.lastName;
+]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="XML READER" guiX="20" guiY="20" id="XML_READER0" type="XML_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context namespacePaths="ns0=&quot;http://tcs.skatteetaten.soa1.polytech.unice.fr/&quot;" outPort="0" sequenceField="__id" xpath="/ns0:complexResponse">
+  <Mapping cloverField="amount" trim="true" xpath="complex_result/amount"/>
+  <Mapping cloverField="date" trim="true" xpath="complex_result/date"/>
+  <Mapping cloverField="identifier" trim="true" xpath="complex_result/identifier"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_NS0_COMPLEX_RESPONSE_OBJECT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="413b8474-977a-4381-ad58-ae53f36797d0" outPort="Port 0 (out)" toNode="BEAN_WRITER0:0"/>
+<Edge debugMode="true" fromNode="XML_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="e607eb8f-3acd-452c-a738-56bebf35aac8" outPort="Port 0 (out)" toNode="FOREACH_NS0_COMPLEX_RESPONSE_OBJECT:0"/>
+</Phase>
+</Graph>

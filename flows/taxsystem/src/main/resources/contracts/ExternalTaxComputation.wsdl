@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/skatteetaten/externals" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://tcs.skatteetaten.soa1.polytech.unice.fr/" name="ExternalTaxComputerService" targetNamespace="http://informatique.polytech.unice.fr/soa1/skatteetaten/externals">
+  <wsdl:import location="http://localhost:8080/webservices/External-Tax-Computer?wsdl=TaxComputer.wsdl" namespace="http://tcs.skatteetaten.soa1.polytech.unice.fr/">
+    </wsdl:import>
+  <wsdl:binding name="ExternalTaxComputerServiceSoapBinding" type="ns1:TaxComputer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="simple">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="simple">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="simpleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="complex">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="complex">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="complexResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExternalTaxComputerService">
+    <wsdl:port binding="tns:ExternalTaxComputerServiceSoapBinding" name="ExternalTaxComputerPort">
+      <soap:address location="http://localhost:8080/webservices/External-Tax-Computer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

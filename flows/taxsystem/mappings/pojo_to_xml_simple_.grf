@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Graph __version="3.5.0" author="mosser" created="Sun Oct 19 19:34:58 CEST 2014" description="Pojo To Xml&lt;simple&gt;" guiVersion="3.4.4.P" id="1413754939886" licenseCode="Unlicensed" licenseType="Unknown" modified="Sun Oct 19 19:34:58 CEST 2014" modifiedBy="mosser" name="Pojo_To_Xml_simple_" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __schemaType="{http://tcs.skatteetaten.soa1.polytech.unice.fr/}simple" __sourcePath="{http://tcs.skatteetaten.soa1.polytech.unice.fr/=ns0}/ns0:simple" _dataStructure="OBJECT" _id="__id" _type="Output" id="e2f0a7fc-f2d8-4915-86d4-4cc1f6442e68">
+<Record fieldDelimiter="," name="simple" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __schemaType="{http://tcs.skatteetaten.soa1.polytech.unice.fr/}simpleTaxRequest" __sourcePath="{http://tcs.skatteetaten.soa1.polytech.unice.fr/=ns0}/ns0:simple/simpleTaxInfo/id" containerType="SINGLE" label="id" name="id" type="string"/>
+<Field __index="1" __schemaType="{http://tcs.skatteetaten.soa1.polytech.unice.fr/}simpleTaxRequest" __sourcePath="{http://tcs.skatteetaten.soa1.polytech.unice.fr/=ns0}/ns0:simple/simpleTaxInfo/income" containerType="SINGLE" label="income" name="income" type="number"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="09bd1024-b3c8-4ecf-ae05-df6404c51673">
+<Record fieldDelimiter="," name="TaxPayer" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/adress/label" containerType="SINGLE" label="label" name="label" type="string"/>
+<Field __index="1" __sourcePath="{}/object/adress/zip" containerType="SINGLE" label="zip" name="zip" type="string"/>
+<Field __index="2" __sourcePath="{}/object/assets/income" containerType="SINGLE" label="income" name="income" type="number"/>
+<Field __index="3" __sourcePath="{}/object/assets/wealth" containerType="SINGLE" label="wealth" name="wealth" type="number"/>
+<Field __index="4" __sourcePath="{}/object/email" containerType="SINGLE" label="email" name="email" type="string"/>
+<Field __index="5" __sourcePath="{}/object/firstName" containerType="SINGLE" label="firstName" name="firstName" type="string"/>
+<Field __index="6" __sourcePath="{}/object/identifier" containerType="SINGLE" label="identifier" name="identifier" type="string"/>
+<Field __index="7" __sourcePath="{}/object/lastName" containerType="SINGLE" label="lastName" name="lastName" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="true" name="identifer" output="false" type="string"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:inputPayload" guiName="Pojo READER" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context outPort="0" sequenceField="__id" xpath=".">
+  <Mapping cloverField="label" trim="true" xpath="adress/label"/>
+  <Mapping cloverField="zip" trim="true" xpath="adress/zip"/>
+  <Mapping cloverField="income" trim="true" xpath="assets/income"/>
+  <Mapping cloverField="wealth" trim="true" xpath="assets/wealth"/>
+  <Mapping cloverField="email" trim="true" xpath="email"/>
+  <Mapping cloverField="firstName" trim="true" xpath="firstName"/>
+  <Mapping cloverField="identifier" trim="true" xpath="identifier"/>
+  <Mapping cloverField="lastName" trim="true" xpath="lastName"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<schema-object>
+  <typed-object-ref type-ref="fr.polytech.unice.soa1.taxSystem.business.TaxPayer"/>
+  <typed-object type="fr.polytech.unice.soa1.taxSystem.business.Address">
+    <typed-object-ref name="label" type-ref="java.lang.String"/>
+    <typed-object-ref name="zip" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="java.lang.String"/>
+  <typed-object type="fr.polytech.unice.soa1.taxSystem.business.Assets">
+    <typed-object-ref name="income" type-ref="float"/>
+    <typed-object-ref name="wealth" type-ref="float"/>
+  </typed-object>
+  <typed-object type="float"/>
+  <typed-object type="fr.polytech.unice.soa1.taxSystem.business.TaxPayer">
+    <typed-object-ref name="adress" type-ref="fr.polytech.unice.soa1.taxSystem.business.Address"/>
+    <typed-object-ref name="assets" type-ref="fr.polytech.unice.soa1.taxSystem.business.Assets"/>
+    <typed-object-ref name="email" type-ref="java.lang.String"/>
+    <typed-object-ref name="firstName" type-ref="java.lang.String"/>
+    <typed-object-ref name="identifier" type-ref="java.lang.String"/>
+    <typed-object-ref name="lastName" type-ref="java.lang.String"/>
+  </typed-object>
+</schema-object>
+]]></attr>
+</Node>
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="XML WRITER" guiX="900" guiY="20" id="EXT_XML_WRITER0" type="EXT_XML_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<clover:element clover:name="ns0:simple" xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" xmlns:ns0="http://tcs.skatteetaten.soa1.polytech.unice.fr/" clover:inPort="0">
+  <simpleTaxInfo>
+    <id>$0.id</id>
+    <income>$0.income</income>
+  </simpleTaxInfo>
+</clover:element>]]></attr>
+<attr name="__typeName"><![CDATA[__default__]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+<attr name="__operationName"><![CDATA[simple]]></attr>
+<attr name="__connectorName"><![CDATA[Web_Service_Consumer]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'ns0:simple'" guiX="460" guiY="20" id="FOREACH_OBJECT_NS0_SIMPLE" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.income = input.income;
+output.id = inputArguments.identifer;]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="09bd1024-b3c8-4ecf-ae05-df6404c51673" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_NS0_SIMPLE:0"/>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_NS0_SIMPLE:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="e2f0a7fc-f2d8-4915-86d4-4cc1f6442e68" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
+</Phase>
+</Graph>

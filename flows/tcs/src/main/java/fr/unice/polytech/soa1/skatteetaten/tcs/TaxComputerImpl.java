@@ -17,12 +17,14 @@ public class TaxComputerImpl implements TaxComputer {
 
 	@Override
 	public TaxComputation simple(SimpleTaxRequest request) {
+	    System.out.println("Executing simple");
 		float amount = (float) (request.getIncome() * 0.2);
 		return buildResponse(request.getIdentifier(), amount);
 	}
 
 	@Override
 	public TaxComputation complex(AdvancedTaxRequest request) {
+	    System.out.println("Executing complex");
 		float onIncome = computeIncome(request.getIncome(), request.getZone());
 		float onAssets = computeAssets(request.getAssets(), request.getZone());
 		float amount = onIncome + onAssets;
