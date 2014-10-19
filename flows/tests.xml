@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="TaxSystem" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="TaxSystemServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem}TaxSystemServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8081/ts/TaxSystem?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8081/ts/TaxSystem?wsdl"><con:part><con:url>http://localhost:8081/ts/TaxSystem?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="TaxSystemService" targetNamespace="http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ConsultTaxes" type="tns:ConsultTaxes"/>
+      <xs:element name="ConsultTaxesResponse" type="tns:ConsultTaxesResponse"/>
+      <xs:element name="HandleATaxPayer" type="tns:HandleATaxPayer"/>
+      <xs:element name="HandleATaxPayerResponse" type="tns:HandleATaxPayerResponse"/>
+      <xs:complexType name="HandleATaxPayer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="taxpayer" type="tns:tax_payer"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="tax_payer">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" type="tns:address"/>
+          <xs:element minOccurs="0" name="assets" type="tns:assets"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+          <xs:element minOccurs="0" name="first_name" type="xs:string"/>
+          <xs:element minOccurs="0" name="last_name" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+      </xs:complexType>
+      <xs:complexType name="address">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="label" type="xs:string"/>
+          <xs:element minOccurs="0" name="zip_code" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="assets">
+        <xs:sequence>
+          <xs:element name="income" type="xs:float"/>
+          <xs:element name="wealth" type="xs:float"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="HandleATaxPayerResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="tax_info" type="tns:tax_form"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="tax_form">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="first_name" type="xs:string"/>
+          <xs:element minOccurs="0" name="last_name" type="xs:string"/>
+          <xs:element name="tax_amount" type="xs:float"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ConsultTaxes">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ConsultTaxesResponse">
+        <xs:sequence>
+          <xs:element name="taxes" type="xs:float"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="HandleATaxPayer">
+    <wsdl:part element="tns:HandleATaxPayer" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="HandleATaxPayerResponse">
+    <wsdl:part element="tns:HandleATaxPayerResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultTaxes">
+    <wsdl:part element="tns:ConsultTaxes" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultTaxesResponse">
+    <wsdl:part element="tns:ConsultTaxesResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TaxSystem">
+    <wsdl:operation name="HandleATaxPayer">
+      <wsdl:input message="tns:HandleATaxPayer" name="HandleATaxPayer"></wsdl:input>
+      <wsdl:output message="tns:HandleATaxPayerResponse" name="HandleATaxPayerResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultTaxes">
+      <wsdl:input message="tns:ConsultTaxes" name="ConsultTaxes"></wsdl:input>
+      <wsdl:output message="tns:ConsultTaxesResponse" name="ConsultTaxesResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TaxSystemServiceSoapBinding" type="tns:TaxSystem">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="HandleATaxPayer">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="HandleATaxPayer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="HandleATaxPayerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultTaxes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ConsultTaxes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ConsultTaxesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TaxSystemService">
+    <wsdl:port binding="tns:TaxSystemServiceSoapBinding" name="TaxSystemPort">
+      <soap:address location="http://localhost:8081/ts/TaxSystem"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8081/ts/TaxSystem</con:endpoint><con:endpoint>http://localhost:8081/ts/handle/TaxSystem</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="ConsultTaxes" bindingOperationName="ConsultTaxes" type="Request-Response" outputName="ConsultTaxesResponse" inputName="ConsultTaxes" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ts/TaxSystem</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tax="http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tax:ConsultTaxes>
+         <!--Optional:-->
+         <arg0>?</arg0>
+      </tax:ConsultTaxes>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem/TaxSystem/ConsultTaxes"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="HandleATaxPayer" bindingOperationName="HandleATaxPayer" type="Request-Response" outputName="HandleATaxPayerResponse" inputName="HandleATaxPayer" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Simple"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ts/TaxSystem</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tax="http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tax:HandleATaxPayer>
+         <taxpayer id="?">
+            <address>
+               <label>1, Forskingsveien</label>
+               <zip_code>0304</zip_code>
+            </address>
+            <assets>
+               <income>14922</income>
+               <wealth>23658</wealth>
+            </assets>
+            <email>boss@sintef.no</email>
+            <first_name>Ze</first_name>
+            <last_name>Boss</last_name>
+         </taxpayer>
+      </tax:HandleATaxPayer>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem/TaxSystem/HandleATaxPayer"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Complex"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/ts/TaxSystem</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tax="http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tax:HandleATaxPayer>
+         <taxpayer id="?">
+            <address>
+               <label>1, Forskingsveien</label>
+               <zip_code>0304</zip_code>
+            </address>
+            <assets>
+               <income>19922</income>
+               <wealth>23658</wealth>
+            </assets>
+            <email>boss@sintef.no</email>
+            <first_name>Ze</first_name>
+            <last_name>Boss</last_name>
+         </taxpayer>
+      </tax:HandleATaxPayer>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/skatteetaten/TaxSystem/TaxSystem/HandleATaxPayer"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ExternalTaxComputerServiceSoapBinding" type="wsdl" bindingName="{http://informatique.polytech.unice.fr/soa1/skatteetaten/externals}ExternalTaxComputerServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/webservices/External-Tax-Computer?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/webservices/External-Tax-Computer?wsdl"><con:part><con:url>http://localhost:8080/webservices/External-Tax-Computer?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ExternalTaxComputerService" targetNamespace="http://informatique.polytech.unice.fr/soa1/skatteetaten/externals" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://informatique.polytech.unice.fr/soa1/skatteetaten/externals" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://tcs.skatteetaten.soa1.polytech.unice.fr/">
+  <wsdl:import location="http://localhost:8080/webservices/External-Tax-Computer?wsdl=TaxComputer.wsdl" namespace="http://tcs.skatteetaten.soa1.polytech.unice.fr/"></wsdl:import>
+  <wsdl:binding name="ExternalTaxComputerServiceSoapBinding" type="ns1:TaxComputer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="simple">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="simple">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="simpleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="complex">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="complex">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="complexResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExternalTaxComputerService">
+    <wsdl:port binding="tns:ExternalTaxComputerServiceSoapBinding" name="ExternalTaxComputerPort">
+      <soap:address location="http://localhost:8080/webservices/External-Tax-Computer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/webservices/External-Tax-Computer?wsdl=TaxComputer.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="TaxComputer" targetNamespace="http://tcs.skatteetaten.soa1.polytech.unice.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://tcs.skatteetaten.soa1.polytech.unice.fr/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://tcs.skatteetaten.soa1.polytech.unice.fr/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tcs.skatteetaten.soa1.polytech.unice.fr/">
+      <xs:element name="complex" type="tns:complex"/>
+      <xs:element name="complexResponse" type="tns:complexResponse"/>
+      <xs:element name="simple" type="tns:simple"/>
+      <xs:element name="simpleResponse" type="tns:simpleResponse"/>
+      <xs:complexType name="simple">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="simpleTaxInfo" type="tns:simpleTaxRequest"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="simpleTaxRequest">
+        <xs:sequence>
+          <xs:element name="id" type="xs:string"/>
+          <xs:element name="income" type="xs:float"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="simpleResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="simple_result" type="tns:taxComputation"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="taxComputation">
+        <xs:sequence>
+          <xs:element name="amount" type="xs:float"/>
+          <xs:element minOccurs="0" name="date" type="xs:string"/>
+          <xs:element minOccurs="0" name="identifier" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="complex">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="complexTaxInfo" type="tns:advancedTaxRequest"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="advancedTaxRequest">
+        <xs:complexContent>
+          <xs:extension base="tns:simpleTaxRequest">
+            <xs:sequence>
+              <xs:element name="assets" type="xs:float"/>
+              <xs:element name="zone" type="xs:int"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="complexResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="complex_result" type="tns:taxComputation"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="complexResponse">
+    <wsdl:part element="ns1:complexResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="complex">
+    <wsdl:part element="ns1:complex" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="simple">
+    <wsdl:part element="ns1:simple" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="simpleResponse">
+    <wsdl:part element="ns1:simpleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TaxComputer">
+    <wsdl:operation name="simple">
+      <wsdl:input message="ns1:simple" name="simple"></wsdl:input>
+      <wsdl:output message="ns1:simpleResponse" name="simpleResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="complex">
+      <wsdl:input message="ns1:complex" name="complex"></wsdl:input>
+      <wsdl:output message="ns1:complexResponse" name="complexResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/webservices/External-Tax-Computer</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="complex" bindingOperationName="complex" type="Request-Response" outputName="complexResponse" inputName="complex" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/External-Tax-Computer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tcs="http://tcs.skatteetaten.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tcs:complex>
+         <!--Optional:-->
+         <complexTaxInfo>
+            <id>?</id>
+            <income>?</income>
+            <assets>?</assets>
+            <zone>?</zone>
+         </complexTaxInfo>
+      </tcs:complex>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/skatteetaten/externals/TaxComputer/complex"/></con:call></con:operation><con:operation isOneWay="false" action="" name="simple" bindingOperationName="simple" type="Request-Response" outputName="simpleResponse" inputName="simple" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/webservices/External-Tax-Computer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tcs="http://tcs.skatteetaten.soa1.polytech.unice.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tcs:simple>
+         <!--Optional:-->
+         <simpleTaxInfo>
+            <id>?</id>
+            <income>?</income>
+         </simpleTaxInfo>
+      </tcs:simple>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://informatique.polytech.unice.fr/soa1/skatteetaten/externals/TaxComputer/simple"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
