@@ -30,7 +30,7 @@ The tax administration needs to integrate the TAIS with the TCS to implement the
 
 ### TAIS Legacy system
 
-The TAIS is an old system, in production since 1992. It exports data as CSV file. Two examples are given: [small.csv]() and [complete.csv](). According to its partnership with the Post office, the tax forms to be sent by snail mail must be stored as a collection of files (to be printed and then sent by the post office).
+The TAIS is an old system, in production since 1992. It exports data as CSV file. Two examples are given: [small.csv](https://github.com/polytechnice-si/5A-2014-SOA1/blob/master/flows/ds_small.csv) and [complete.csv](https://github.com/polytechnice-si/5A-2014-SOA1/blob/master/flows/ds_complete.csv). According to its partnership with the Post office, the tax forms to be sent by snail mail must be stored as a collection of files (to be printed and then sent by the post office).
 
 
 ## Integration demonstration
@@ -39,15 +39,15 @@ The TAIS is an old system, in production since 1992. It exports data as CSV file
 
 The following business objects are identified as relevant to support message exchange between the TAIS and the TCS:
 
-* [`TaxPayer`](): describes what the system knows about a tax payer, *e.g.*, name, address, income. It relies on two sattelite business objects, *i.e.*, [`Address`]() and [`Assets`](). 
-* [`TaxForm`](): describes the information that wil be sent by snail mail to the tax payer (here the amount of tax to be payed).
+* [`TaxPayer`](https://github.com/polytechnice-si/5A-2014-SOA1/blob/master/flows/taxsystem/src/main/java/fr/polytech/unice/soa1/taxSystem/business/TaxPayer.java): describes what the system knows about a tax payer, *e.g.*, name, address, income. It relies on two sattelite business objects, *i.e.*, [`Address`](https://github.com/polytechnice-si/5A-2014-SOA1/blob/master/flows/taxsystem/src/main/java/fr/polytech/unice/soa1/taxSystem/business/Address.java) and [`Assets`](https://github.com/polytechnice-si/5A-2014-SOA1/blob/master/flows/taxsystem/src/main/java/fr/polytech/unice/soa1/taxSystem/business/Assets.java). 
+* [`TaxForm`](https://github.com/polytechnice-si/5A-2014-SOA1/blob/master/flows/taxsystem/src/main/java/fr/polytech/unice/soa1/taxSystem/business/TaxForm.java): describes the information that wil be sent by snail mail to the tax payer (here the amount of tax to be payed).
 
 To trigger the integration flows from the outside of the ESB, we use a Web Service exposition, named `TaxSystem`. The two following operations will be exposed to trigger the main integration flows:
 
 * `HandleATaxPayer`: based on a given `TaxPayer`, it generates the associated `TaxForm`
 * `ConsultTaxes`: based on information filled in a webform (*e.g.*, lastname, firstname, zipcode), return the amount of taxes to be payed by this person. Yes, you can consult how much taxes your neighbor will pay. This **is** Norway. 
 
-The interface (as a Java Interface) of this service is available here: [`TaxSystem`](). Contrarily to the web services implemented in the previous lab, here the implementation of interface will be done using integration flows instead of plain old java code.
+The interface (as a Java Interface) of this service is available here: [`TaxSystem`](https://github.com/polytechnice-si/5A-2014-SOA1/blob/master/flows/taxsystem/src/main/java/fr/polytech/unice/soa1/taxSystem/services/TaxSystem.java). Contrarily to the web services implemented in the previous lab, here the implementation of interface will be done using an integration flow instead of plain old java code.
 
 ### Step #1: Expose Mock answers for `TaxSystem` operations
 
@@ -73,7 +73,13 @@ For convenience purpose, we use logger components to visualize which branch is t
 The exposed service is available here: [http://localhost:8081/ts/TaxSystem?wsdl]()
 
 
+### Step #2: Create an internal flow for `HandleATaxPayer`
 
+Still relying on an hard-coded computation, we now extract the handling of a given tax payer out of the web service exposition flow. We create a dedicated flow, that can only be invoked from the inside of the bus. This *internal* flow is exposed thanks to a *Virtual Machine* connector, named `/taxsystem/handleataxpayer` and configured as a request-response one. It starts by extracting the income of the pax payer from the input message (located in `message.payload.assets.income`) and storing it in a variable named `income`. Then, based on the value of such an income (`income < 15000`), a choice-based router is used to transfer the message to the `simple` or `complex` computation algorithm, still mocked for now with the same groovy script.
+
+![step 2 flow](https://raw.githubusercontent.com/polytechnice-si/5A-2014-SOA1/master/flows/pictures/step2.png "Step #2")
+
+### Step #3: Route the messages to the TCS
 
 
 
