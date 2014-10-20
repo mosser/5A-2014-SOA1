@@ -121,6 +121,55 @@ The complete mapping script is defined here:
 
 ### Step #6: Consulting the processed data
 
+#### Working with a database
+
+We need a *glue* database to store the processed data and allows one to consult the contents of the tax form database. This database will be created as an *in-memory* database, using Derby as underlying implementation. In the **GlobalElements** tab, we use a Derby connector configuration, pointing to the following URL: `jdbc:derby:memory:glue;create=true`. 
+
+This database needs to be initialized. We implement an integration flow `init-db` dedicated to this task. We rely on an administration URL (*i.e.*, `http://localhost:9090/admin/db/init`) to receive an external request, and a Groovy script is used to implement the table creation:
+
+    import groovy.sql.*
+    import java.sql.*
+    
+    System.out.println("Initializing database");
+    def sql = Sql.newInstance("jdbc:derby:memory:glue;create=true", new Properties());
+    sql.execute("CREATE TABLE results (name varchar(256), amount float)");
+    System.out.println("Database initialized");
+    
+    return "initialized"; 
 
 
+Storing into the database is defined as an internal flow (VM), which is asynchronous. The groovy script used to insert a recoed into the database is the following:
+
+    import groovy.sql.*
+    import java.sql.*
+    
+    def sql = Sql.newInstance("jdbc:derby:memory:glue", new Properties());
+    sql.execute("insert into results (name, amount) values ('" + payload.lastName + "', "+payload.taxAmount+")");
+    
+    System.out.println("Info stored for " + payload.lastName);
+    
+To consult the database contents, we also create an internal flow, but synchronous. The groovy script used to retrieve the computed amount based on the lastname of a tax payer is the following:
+
+    import groovy.sql.*
+    import java.sql.*
+    
+    def sql = Sql.newInstance("jdbc:derby:memory:glue", new Properties());
+    def query = "select amount from results where name = '"+ message.payload+"'";
+    def data = sql.rows(query);
+    
+    return (float) data[0]['AMOUNT'];
+    
+![step 6.1 flow](https://raw.githubusercontent.com/polytechnice-si/5A-2014-SOA1/master/flows/pictures/step6_1.png "Step #6.1") 
+
+#### Integrating with the defined flows
+
+Finally, we update the previously created flows to (i) store the tax data after its computation and (ii) release the mock for the `ConsultTaxes` Operation. One can remark that the HanfleATaxPayer-VM flow does not wait for the end of the database storage to return its answer, as the internal flow is asynchronous.
+
+![step 6.2 flow](https://raw.githubusercontent.com/polytechnice-si/5A-2014-SOA1/master/flows/pictures/step6_2.png "Step #6.2") 
+
+### Perspectives
+
+* Leverage cache mechanisms to prevent multiple computation for the same tax payer
+* handle errors
+* …
  
