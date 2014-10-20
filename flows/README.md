@@ -23,9 +23,9 @@ The tax administration needs to integrate the TAIS with the TCS to implement the
     cd tcs
     mvn -DskipTests=true clean package tomee:run
     
-* [http://localhost:8080/webservices/External-Tax-Computer?wsdl]()
+* **RPC**: [http://localhost:8080/webservices/External-Tax-Computer?wsdl]()
   * Used to compute taxes, following the "simple" or "advanced" method according to the income of the taxpayer and its geographical location.
-* [http://localhost:8080/webservices/Identifier-Generator?wsdl]()
+* **REST**: [http://localhost:8080/webservices/Identifier-Generator?wsdl]()
   * Used to generate unique identifiers, as tax computation is anonymised (executed on a third-part server).
 
 ### TAIS Legacy system
@@ -99,7 +99,25 @@ For example, here is the Data Transformer script associated to the `Xml<complexR
 
 ### Step #4: Generating unique Identifiers
 
+Generate unique identifiers means to invoke the generator exposed by the TCS as a resource. This behavior is shared by the two tax computations flows, thus it is a perfect candidate for a subflow. We rely on a `MessageEnricher` that targets the `identifier` field of the current message. This enricher implements a chain of processors, starting by (i) logging the call to the generator, (ii) replacing the current request by an empty one (using an `Expression` set to `new Object[]{}`, *i.e.*, the empty message), (iii) invoking the generator using an HTTP connector (using the `address` field in the Advanced tab) and finally transforming the received object into a String. As this chain is defined inside an enricher, the resulting message is used to fill the `identifier` field. 
+
+![step 4 flow](https://raw.githubusercontent.com/polytechnice-si/5A-2014-SOA1/master/flows/pictures/step4.png "Step #4") 
+
+
 ### Step #5: Processing CSV files
+
+The CSV file exported by TAIS will be collected into a directory named `_tais`. We will store the output of the tax computation processing into a JSON file names `result.json` in the `_output` directory. The entry point is a `File` connector, linked to the `_tais` directory and moving the processed files to the `_data` directory. We declare a pattern to only process CSV files (*i.e.*, `*.\.csv`). Then, a `DataMapper` transforms the CSV file into a `Collection` of `TaxPayer`s. The mapping leverages the *Mule Expression Language* (MEL) capabilities to hack the data stored in the CSV file (*e.g.*, transforming the string "11,766Kr" into its associated integer value 11766). Based on this collection, a `Splitter` separates the different `TaxPayer`s,  and forward each tax payer to the internal flow defined at step #2. finally, an `Aggregator` assemble all the different `TaxForm`s and thanks to an `Object to JSON` processor, the output file is stored in the final result.
+
+![step 5 flow](https://raw.githubusercontent.com/polytechnice-si/5A-2014-SOA1/master/flows/pictures/step5.png "Step #5") 
+
+The complete mapping script is defined here:
+
+    output.firstName = input.Navn.split(",")[1];
+    output.lastName = input.Navn.split(",")[0];
+    output.income = str2double(input.Inntekt.substring(0,input.Inntekt.length()-2).replace(",",""));
+    output.wealth = str2double(input.Formue.substring(0,input.Formue.length()-2).replace(",",""));
+    output.zip = input.Postnummer;
+    output.label = input.Postaddressen;
 
 ### Step #6: Consulting the processed data
 
