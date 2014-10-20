@@ -1,20 +1,15 @@
 package fr.unice.polytech.soa1.skatteetaten.tcs;
 
-
-import javax.ejb.Stateless;
-import javax.jws.WebService;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
 import java.util.UUID;
 
 
-@Stateless(name = "Identifier-Generator")
-@WebService(targetNamespace = "http://informatique.polytech.unice.fr/soa1/skatteetaten/externals",
-		portName = "IdentifierGeneratorPort",
-		serviceName = "IdentifierGeneratorService",
-		endpointInterface= "fr.unice.polytech.soa1.skatteetaten.tcs.IdentifierGenerator")
+@Path("/tcs/rest")
 public class IdentifierGeneratorImpl implements IdentifierGenerator {
 
 	@Override
-	public String generate() {
-		return UUID.randomUUID().toString();
+	public Response generate() {
+		return Response.ok(UUID.randomUUID().toString()).build();
 	}
 }

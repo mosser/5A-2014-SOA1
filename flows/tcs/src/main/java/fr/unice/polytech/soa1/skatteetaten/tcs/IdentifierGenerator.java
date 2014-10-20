@@ -1,14 +1,13 @@
 package fr.unice.polytech.soa1.skatteetaten.tcs;
 
-import javax.jws.WebMethod;
-import javax.jws.WebResult;
-import javax.jws.WebService;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 
-@WebService(name="AnonymousIdentifier")
+@Produces({"text/plain"})
 public interface IdentifierGenerator {
 
-	@WebMethod
-	@WebResult(name="generate")
-	public String generate();
+	@Path("/generator")
+	@GET
+	public Response generate();
 
 }
