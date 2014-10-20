@@ -24,7 +24,6 @@
 <Dictionary>
 <Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
 <Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
-<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="true" name="identifer" output="false" type="string"/>
 </Dictionary>
 </Global>
 <Phase number="0">
@@ -86,7 +85,7 @@
 output.__id = input.__id;
 //END -> DO NOT REMOVE
 output.income = input.income;
-output.id = inputArguments.identifer;]]></attr>
+output.id = input.identifier;]]></attr>
 </Node>
 <Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="09bd1024-b3c8-4ecf-ae05-df6404c51673" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_NS0_SIMPLE:0"/>
 <Edge debugMode="true" fromNode="FOREACH_OBJECT_NS0_SIMPLE:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="e2f0a7fc-f2d8-4915-86d4-4cc1f6442e68" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>

@@ -17,4 +17,9 @@ public class SimpleTaxRequest {
 	public float getIncome() { return income; }
 	public void setIncome(float income) { this.income = income; }
 
+	@Override
+	public String toString() {
+		return "TaxRequest:\n  identifier: " + identifier + "\n  income: " + income;
+	}
+
 }

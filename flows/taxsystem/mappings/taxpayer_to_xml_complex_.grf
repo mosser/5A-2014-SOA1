@@ -26,7 +26,6 @@
 <Dictionary>
 <Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
 <Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
-<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="true" name="identifier" output="false" type="string"/>
 </Dictionary>
 </Global>
 <Phase number="0">
@@ -89,7 +88,7 @@ output.__id = input.__id;
 output.income = input.income;
 output.assets = input.wealth;
 output.zone = str2integer(input.zip);
-output.id = inputArguments.identifier;]]></attr>
+output.id = input.identifier;]]></attr>
 </Node>
 <Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="85e67d69-9504-47b7-bcdd-06fa2e45260a" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_NS0_COMPLEX:0"/>
 <Edge debugMode="true" fromNode="FOREACH_OBJECT_NS0_COMPLEX:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="b32c3899-74b8-4084-8526-5945127e592d" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>

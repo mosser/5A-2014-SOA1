@@ -10,6 +10,7 @@ public class IdentifierGeneratorImpl implements IdentifierGenerator {
 
 	@Override
 	public Response generate() {
+		System.out.println("Generating identifier");
 		return Response.ok(UUID.randomUUID().toString()).build();
 	}
 }

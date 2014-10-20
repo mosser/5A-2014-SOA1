@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule xmlns:jersey="http://www.mulesoft.org/schema/mule/jersey" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
@@ -12,7 +12,8 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
 http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
 http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
-http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd">
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/jersey http://www.mulesoft.org/schema/mule/jersey/current/mule-jersey.xsd">
     <ws:consumer-config name="Web_Service_Consumer" wsdlLocation="contracts/ExternalTaxComputation.wsdl" service="ExternalTaxComputerService" port="ExternalTaxComputerPort" serviceAddress="http://localhost:8080/webservices/External-Tax-Computer" doc:name="Web Service Consumer"/>
     <data-mapper:config name="Pojo_To_Xml_simple_" transformationGraphPath="pojo_to_xml_simple_.grf" doc:name="Pojo_To_Xml_simple_"/>
     <data-mapper:config name="Xml_simpleResponse__To_TaxForm" transformationGraphPath="xml_simpleresponse__to_taxform.grf" doc:name="Xml_simpleResponse__To_TaxForm"/>
@@ -51,11 +52,10 @@ http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/cu
     </flow>
     <sub-flow name="invoke-simple-tcs" doc:name="invoke-simple-tcs">
         <logger message="Processing: Simple" level="INFO" doc:name="simple"/>
-        <set-variable variableName="identifier" value="123456789" doc:name="hard-coded identifier"/>
+        <flow-ref name="get-generator" doc:name="get-generator"/>
         <set-variable variableName="taxpayer" value="#[message.payload]" doc:name="store taxpayer"/>
         <data-mapper:transform config-ref="Pojo_To_Xml_simple_" doc:name="TaxPayer To Xml&lt;simple&gt;">
             <data-mapper:input-arguments>
-                <data-mapper:input-argument key="identifer">#[identifier]</data-mapper:input-argument>
             </data-mapper:input-arguments>
         </data-mapper:transform>
         <ws:consumer config-ref="Web_Service_Consumer" operation="simple" doc:name="TCS::simple"/>
@@ -71,11 +71,10 @@ http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/cu
     </sub-flow>
     <sub-flow name="invoke-complex-tcs" doc:name="invoke-complex-tcs">
         <logger message="Processing: Complex" level="INFO" doc:name="complex"/>
-        <set-variable variableName="identifier" value="987654321" doc:name="hard-coded identifier"/>
+        <flow-ref name="get-generator" doc:name="get-generator"/>
         <set-variable variableName="taxpayer" value="#[message.payload]" doc:name="store taxpayer"/>
         <data-mapper:transform config-ref="TaxPayer_To_Xml_complex_" doc:name="TaxPayer To Xml&lt;complex&gt;">
             <data-mapper:input-arguments>
-                <data-mapper:input-argument key="identifier">#[identifier]</data-mapper:input-argument>
             </data-mapper:input-arguments>
         </data-mapper:transform>
         <ws:consumer config-ref="Web_Service_Consumer1" operation="complex" doc:name="TCS::complex"/>
@@ -84,5 +83,15 @@ http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/cu
                 <data-mapper:input-argument key="taxpayer">#[taxpayer]</data-mapper:input-argument>
             </data-mapper:input-arguments>
         </data-mapper:transform>
+    </sub-flow>
+    <sub-flow name="get-generator" doc:name="get-generator">
+        <enricher target="#[message.payload.identifier]" doc:name="Enrich message.payload.identifier">
+            <processor-chain doc:name="Chain: call ">
+                <logger message="Requesting generator" level="INFO" doc:name="generator"/>
+                <expression-transformer expression="#[new Object[]{}]" doc:name="Expression"/>
+                <http:outbound-endpoint exchange-pattern="request-response"    method="GET" doc:name="localhost:8080/tcs/rest/generator" address="http://localhost:8080/tcs/rest/generator"/>
+                <object-to-string-transformer doc:name="Object to String"/>
+            </processor-chain>
+        </enricher>
     </sub-flow>
 </mule>

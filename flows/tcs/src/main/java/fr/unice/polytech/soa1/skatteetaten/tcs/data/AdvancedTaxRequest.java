@@ -17,4 +17,9 @@ public class AdvancedTaxRequest extends SimpleTaxRequest {
 	public int getZone() { return zone; }
 	public void setZone(int zone) { this.zone = zone; }
 
+	@Override
+	public String toString() {
+		return super.toString() + "\n  assets: " + assets + "\n  zone: " + zone;
+	}
+
 }
